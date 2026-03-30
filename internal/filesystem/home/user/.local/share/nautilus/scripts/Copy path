@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+paths=()
+for item in "$@"; do
+    [[ "$item" == file://* ]] && item="${item#file://}"
+    paths+=("$(realpath "$item")")
+done
+
+wl-copy "$(printf '%s\n' "${paths[@]}" | sed '$!b; s/\n$//')"

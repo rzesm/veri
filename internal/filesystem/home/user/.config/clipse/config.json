@@ -1,0 +1,10 @@
+{
+    "allowDuplicates": false,
+    "maxHistory": 100,
+    "imageDisplay": {
+        "type": "sixel",
+        "scaleX": 10,
+        "scaleY": 20,
+        "heightCut": 2
+    }
+}

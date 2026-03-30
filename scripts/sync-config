@@ -1,0 +1,42 @@
+#!/bin/bash
+
+set -euo pipefail
+
+if [[ $(cat "internal/anchor") != "meow c:" ]]; then
+    echo "Error: the script must be executed from the installer's root directory"
+    exit 1
+fi
+
+if [[ "$EUID" -eq 0 ]]; then
+    echo "Error: the script must not be run as root"
+    exit 1
+fi
+
+if [[ ! -f "internal/configured/packages" ]]; then
+    echo "Error: the installation has not been configured"
+    exit 1
+fi
+
+if [[ $(internal/scripts/check_prerequisites.sh | tee /dev/tty) != "" ]]; then
+    exit 1
+fi
+
+
+
+sudo rsync -aHAX --backup --suffix=.bak internal/configured/filesystem/ /
+
+sed 's/^/sudo systemctl enable /' internal/configured/services | bash
+
+dbus-run-session sed 's/^/gsettings set /' internal/configured/gsettings | bash
+
+username=$(whoami)
+
+if [[ ! -f "internal/configured/flags/nozsh" ]]; then
+    sudo chsh -s /usr/bin/zsh $username
+fi
+
+if [[ ! -f "internal/configured/flags/nowheel" ]]; then
+    sudo usermod -aG wheel $username
+fi
+
+echo "Syncing complete."

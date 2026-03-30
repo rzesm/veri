@@ -1,0 +1,20 @@
+window {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.titlebar {
+	background-color: rgba(0, 0, 0, 0.7);
+}
+
+statuspage {
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.sidebar-pane {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+#yad-calendar-widget {
+    background-color: rgba(0, 0, 0, 0);
+    border-color: rgba(0, 0, 0, 0);
+}

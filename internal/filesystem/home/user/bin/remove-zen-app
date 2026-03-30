@@ -1,0 +1,77 @@
+#!/bin/bash
+
+name="$1"
+zen_path="$HOME/.zen"
+desktop_entries_path="$HOME/.local/share/applications"
+profiles_file="$zen_path/profiles.ini"
+
+name_lowercase=$(echo "$name" | tr '[:upper:]' '[:lower:]')
+
+if [[ -z "$name" || "$name" == */* || "$name" == *.* ]]; then
+    echo "Invalid name"
+    exit 1
+fi
+
+# Remove desktop entry
+desktop_file="${desktop_entries_path}/zen-${name_lowercase}.desktop"
+if [ -f "$desktop_file" ]; then
+    rm "$desktop_file"
+    echo "Removed desktop entry: $desktop_file"
+fi
+
+# Remove profile folder
+profile_path=(${zen_path}/*.app-${name_lowercase})
+if [ -e "${profile_path[0]}" ]; then
+    rm -rf "${profile_path[0]}"
+    echo "Removed profile folder: ${profile_path[0]}"
+fi
+
+# Remove the profile from profiles.ini
+cp -- "$profiles_file" "${profiles_file}.bak"
+
+tmp="$(mktemp "${profiles_file}.tmp.XXXXXX")"
+trap 'rm -f "$tmp"' EXIT
+
+awk -v name="app-$name_lowercase" '
+  BEGIN { inside = 0; skip = 0; buf = "" }
+  /^[[][Pp]rofile[^]]*]/ {
+    if (buf != "") {
+      if (!skip) printf "%s", buf
+      buf = ""; skip = 0
+    }
+    inside = 1
+    buf = $0 "\n"
+    next
+  }
+  /^\[/ {
+    if (buf != "") {
+      if (!skip) printf "%s", buf
+      buf = ""; skip = 0
+    }
+    inside = 0
+    print $0
+    next
+  }
+  {
+    if (inside) {
+      if ($0 ~ /^Name=/) {
+        val = substr($0, index($0, "=") + 1)
+        if (val == name) skip = 1
+      }
+      buf = buf $0 "\n"
+    } else {
+      print $0
+    }
+  }
+  END {
+    if (buf != "") {
+      if (!skip) printf "%s", buf
+    }
+  }
+' "${profiles_file}" > "$tmp"
+
+# atomic replace
+mv -- "$tmp" "$profiles_file"
+trap - EXIT
+
+echo "Made a backup of $profiles_file and tried to remove the profile"

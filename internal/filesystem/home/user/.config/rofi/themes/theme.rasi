@@ -1,0 +1,104 @@
+configuration {
+    font: "Adwaita Sans semibold 14";
+    show-icons: true;
+    display-drun: "";
+    display-window: "";
+    display-filebrowser: "";
+    display-: "";
+    drun-display-format: "{name}";
+    disable-history: false;
+    sidebar-mode: false;
+}
+
+* {
+    text-color: rgba(180, 180, 180, 1);
+    background-color: rgba(0, 0, 0, 0);
+}
+
+window {
+    location: center;
+    anchor: center;
+    padding: 10px;
+    width: 500;
+    spacing: 0;
+    children: [mainbox];
+    orientation: horizontal;
+}
+
+mainbox {
+    children: [ inputbar, message, listview];
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 30;
+    border: 2 0 2 0;
+    border-color: rgba(255, 255, 255, 0.1);
+    padding: 10;
+    spacing: 0;
+}
+
+inputbar {
+    padding: 5 10 5 10;
+    border-radius: 25;
+    background-color: rgba(255, 255, 255, 0);
+}
+
+entry {
+    placeholder: "Search";
+    placeholder-color: rgba(255, 255, 255, 0.4);
+    text-color: rgba(255, 255, 255, 1);
+}
+
+prompt {
+    font: "Font Awesome 7 Free Solid 14";
+    text-color: rgba(255, 255, 255, 1);
+    margin: 3 10 0 5;
+}
+
+listview {
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 25;
+    columns: 1;
+    lines: 12;
+    spacing: 0;
+    layout: vertical;
+    padding: 4 4 4 4;
+    margin: 10 0 0 0;
+}
+
+element {
+    background-color: rgba(0, 0, 0, 0);
+    border-radius: 30px;
+    border: 2 0 2 0;
+    border-color: rgba(0, 0, 0, 0);
+    margin: 4 4 4 4;
+    padding: 2 0 2 0;
+}
+
+element selected {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+    text-color: rgba(255, 255, 255, 1);
+}
+
+element-text {
+    background-color: rgba(0, 0, 0, 0);
+    text-color: inherit;
+    horizontal-align: 0;
+    vertical-align: 0.5;
+}
+
+element-icon {
+    horizontal-align: 0.5;
+    vertical-align: 0.5;
+    size: 24px;
+    margin: 0 6 0 6;
+    padding: 4 4 4 4;
+}
+
+error-message {
+    background-color: rgba(0, 0, 0, 0.2);
+    text-color: rgba(255, 255, 255, 1);
+    padding: 20;
+    border-radius: 30;
+    border: 2px;
+    border-color: rgba(255, 255, 255, 0.02);
+}

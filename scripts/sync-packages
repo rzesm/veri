@@ -1,0 +1,30 @@
+#!/bin/bash
+
+set -euo pipefail
+
+if [[ $(cat "internal/anchor") != "meow c:" ]]; then
+    echo "Error: the script must be executed from the installer's root directory"
+    exit 1
+fi
+
+if [[ "$EUID" -eq 0 ]]; then
+    echo "Error: the script must not be run as root"
+    exit 1
+fi
+
+if [[ ! -f "internal/configured/packages" ]]; then
+    echo "Error: the installation has not been configured"
+    exit 1
+fi
+
+if [[ $(internal/scripts/check_prerequisites.sh | tee /dev/tty) != "" ]]; then
+    exit 1
+fi
+
+
+
+[[ ! -f "internal/configured/flags/nosyu" ]] && yay --noconfirm
+
+yay -S --noconfirm --needed - < internal/configured/packages
+
+echo "Syncing complete."

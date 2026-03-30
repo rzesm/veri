@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Pure Data
+Comment=The Pure Data real-time music and multimedia environment
+Exec=pd
+Icon=pd
+Terminal=false
+StartupNotify=false
+Categories=AudioVideo;Audio;
+Hidden=true

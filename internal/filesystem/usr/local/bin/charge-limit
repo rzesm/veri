@@ -1,0 +1,27 @@
+#!/bin/bash
+
+limit="$1"
+
+if [[ $EUID -ne 0 ]]; then
+    echo "Must be run as root"
+    exit 1
+fi
+
+if [[ ! "$limit" =~ ^[0-9]+$ ]] || (( limit < 50 || limit > 100 )); then
+    echo "Limit must be an integer from 50 to 100"
+    exit 2
+fi
+
+config="/etc/tlp.conf"
+buffer="/var/charge-limit"
+battery=$(cat /var/battery)
+
+# Add STOP_CHARGE_THRESH_BAT to tlp.conf
+sed -E -i "s|^[[:space:]]*#?[[:space:]]*STOP_CHARGE_THRESH_${battery}=.*|STOP_CHARGE_THRESH_${battery}=$limit|" "$config"
+if ! grep -Eq "^[[:space:]]*STOP_CHARGE_THRESH_${battery}=" "$config"; then
+    echo "STOP_CHARGE_THRESH_${battery}=$limit" | tee -a "$config" >/dev/null
+fi
+
+echo "$limit" | tee "$buffer" >/dev/null
+
+tlp start

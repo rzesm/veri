@@ -1,0 +1,14 @@
+font=System-ui 12
+markup=1
+format=<b>%s</b>\n%b
+background-color=#000000b3
+border-color=#ffffff39
+border-size=1
+border-radius=15
+default-timeout=5000
+margin=5,0,0,0
+outer-margin=5,5,5,5
+padding=5,0,5,0
+width=290
+layer=overlay
+anchor=bottom-right

@@ -1,0 +1,62 @@
+#!/bin/bash
+
+set -euo pipefail
+
+if [[ $(cat "internal/anchor") != "meow c:" ]]; then
+    echo "Error: the script must be executed from the installer's root directory"
+    exit 1
+fi
+
+if [[ "$EUID" -eq 0 ]]; then
+    echo "Error: the script must not be run as root"
+    exit 1
+fi
+
+if [[ -n $(internal/scripts/check_prerequisites.sh | tee /dev/tty) ]]; then
+    exit 1
+fi
+
+
+
+if ! internal/scripts/check_config.sh; then
+    internal/scripts/create_config.sh
+    echo "No configuration has been found."
+    echo "Creating empty configuration at '~/.config/veri'."
+    exit 0
+fi
+
+
+
+sudo rm -rf internal/configured/*
+
+
+mkdir -p internal/configured/hardware internal/configured/flags
+internal/scripts/generate_hardware.sh
+python internal/scripts/read_flags.py
+
+
+rsync -aHAX internal/filesystem/ internal/configured/filesystem/
+
+internal/scripts/generate_filesystem_files.sh
+
+# Move the dummy home directory according to the username
+username=$(whoami)
+if [[ $username != "user" && -e "internal/configured/filesystem/home/user" ]]; then
+    [[ -e internal/configured/filesystem/home/$username ]] && exit 1
+    mv -f internal/configured/filesystem/home/user internal/configured/filesystem/home/$username
+fi
+
+# Fix permissions
+username=$(whoami)
+sudo chown -R root internal/configured/filesystem
+sudo chgrp -R root internal/configured/filesystem
+sudo chown -R $username internal/configured/filesystem/home/$username
+sudo chgrp -R $username internal/configured/filesystem/home/$username
+
+python "internal/scripts/remove_ignored_files.py"
+
+python "internal/scripts/generate_packages.py"
+python "internal/scripts/generate_gsettings.py"
+python "internal/scripts/generate_services.py"
+
+echo "Configuration complete."

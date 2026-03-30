@@ -1,0 +1,114 @@
+{
+
+"layer": "top",
+"position": "top",
+"exclusive": true,
+"focusable": false,
+"margin-bottom": 0,
+"margin-top": 10,
+
+"modules-left": ["battery", "tray"],
+"modules-center": ["wlr/taskbar", "hyprland/workspaces", "group/center-icons"],
+"modules-right": ["clock"],
+
+// Left
+
+"battery": {
+      "format": "{icon} {capacity}%",
+      "format-charging": "\uf0e7 {icon} {capacity}%",
+      "format-not-charging": "\uf1e6 {icon} {capacity}%",
+      "format-alt": "{icon} {capacity}%",
+      "tooltip": false,
+      "format-icons": ["\uf244", "\uf243", "\uf242", "\uf241", "\uf240"],
+      "on-click": "pkill -f $HOME/.config/waybar/charge-limit.sh || $HOME/.config/waybar/charge-limit.sh"
+},
+
+"tray": {
+    "spacing": 5,
+    "icon-size": 20
+},
+
+// Center
+
+"wlr/taskbar": {
+    "format": "{icon}",
+    "icon-size": 16,
+    "tooltip-format": "{title}",
+    "on-click": "activate",
+    "on-click-middle": "close",
+    "ignore-list": ["org.twosheds.iwgtk", "com.saivert.pwvucontrol", "com.ezratweaver.AdwBluetooth", "yad.power", "zenity", "clipse", "unicode-input", "polkit-gnome-authentication-agent-1", "yad.charge", "yad.calendar"]
+},
+
+"hyprland/workspaces": {
+    "all-outputs": true,
+},
+
+"group/center-icons": {
+    "orientation": "horizontal",
+    "modules": [
+        "custom/launcher",
+        "custom/overview",
+        "custom/power",
+        "idle_inhibitor",
+        "pulseaudio",
+        "network",
+        "bluetooth"
+    ]
+},
+
+"custom/launcher": {
+    "format": "\uf002",
+    "on-click": "rofi -show drun",
+    "tooltip": false
+},
+
+"custom/overview": {
+    "format": "\uf14e",
+    "on-click": "",
+    "on-click-release": "~/.config/hypr/scripts/toggle_overview.sh",
+    "tooltip": false
+},
+
+"custom/power": {
+    "format": "\uf011",
+    "on-click": "pkill -f \"$HOME/.config/waybar/power.sh\" || (pkill iwgtk; pkill adw-bluetooth; pkill pwvucontrol; \"$HOME/.config/waybar/power.sh\")",
+    "tooltip": false
+},
+
+"idle_inhibitor": {
+    "format": "\uf254",
+    "tooltip": false
+},
+
+"pulseaudio": {
+    "format": "\uf028",
+    "tooltip-format": "{desc} ({volume}%)",
+    "on-click": "pkill pwvucontrol || (pkill -f \"$HOME/.config/waybar/power.sh\"; pkill iwgtk; pkill adw-bluetooth; pwvucontrol)"
+},
+
+"network": {
+    "format": "\uf1eb",
+    "tooltip-format": "Connected to {essid}",
+    "tooltip-format-disabled": "Wi-Fi disabled",
+    "tooltip-format-disconnected": "Wi-Fi not connected",
+    "on-click": "pkill iwgtk || (pkill -f \"$HOME/.config/waybar/power.sh\"; pkill pwvucontrol; pkill adw-bluetooth; iwgtk)"
+},
+
+"bluetooth": {
+    "format": "\uf294",
+    "tooltip-format": "Bluetooth not connected",
+    "tooltip-format-disabled": "Bluetooth disabled",
+    "tooltip-format-off": "Bluetooth disabled",
+    "tooltip-format-connected": "Connected to {device_alias}",
+    "on-click": "pkill adw-bluetooth || (pkill -f \"$HOME/.config/waybar/power.sh\"; pkill pwvucontrol; pkill iwgtk; adw-bluetooth)"
+},
+
+// Right
+
+"clock": {
+    "format": "{:%A · %d %B %Y · %H : %M}",
+    "tooltip": false,
+    "on-click": "pkill -f '^yad --name=yad.calendar' || yad --name=yad.calendar --calendar --no-buttons"
+}
+
+}

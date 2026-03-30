@@ -1,0 +1,5 @@
+[Desktop Entry]
+Name=Micro
+Icon=micro
+Type=Application
+Exec=foot --app-id=micro micro

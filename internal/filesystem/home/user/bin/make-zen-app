@@ -1,0 +1,42 @@
+#!/bin/bash
+
+name="$1"
+url="$2"
+zen_path="$HOME/.zen"
+desktop_entries_path="$HOME/.local/share/applications"
+
+name_lowercase=$(echo "$name" | tr '[:upper:]' '[:lower:]')
+
+if [[ -z "$name" || "$name" == */* || "$name" == *.* ]]; then
+    echo "Invalid name"
+    exit 1
+fi
+
+profile_path=(${zen_path}/*.${name_lowercase})
+
+# If the web app's profile folder doesn't exist
+# then create a profile using Zen
+if [ ! -e "${profile_path[0]}" ]; then
+    zen-browser -CreateProfile app-$name_lowercase
+    while [ ! -e ${zen_path}/*.app-${name_lowercase} ]; do
+        sleep 1
+    done
+
+    profile_path=(${zen_path}/*.app-${name_lowercase})
+
+    ln -sf ${zen_path}/web-app-user.js ${profile_path[0]}/user.js
+    ln -sf ${zen_path}/web-app-extensions ${profile_path[0]}/extensions
+
+    echo "Created profile: ${profile_path[0]}"
+fi
+
+# Make a desktop entry
+desktop_file="${desktop_entries_path}/zen-${name_lowercase}.desktop"
+cat <<EOF > ${desktop_file}
+[Desktop Entry]
+Type=Application
+Exec=zen-browser -P app-$name_lowercase --name=$name_lowercase --new-window $url
+Name=$name
+Icon=$name_lowercase
+EOF
+echo "Created desktop entry: ${desktop_file}"

@@ -1,0 +1,17 @@
+#!/bin/bash
+
+monitor=$(hyprctl monitors -j | jq -r '.[] | select(.focused==true)')
+height=$(echo $monitor | jq -r '.height')
+
+export INPUT_FIELD_X=$(expr $height / 3)
+export INPUT_FIELD_Y=$(expr $height / 20)
+export INPUT_FIELD_BEZEL_WIDTH=$(expr $height / 180)
+export USER_ICON_SIZE=$(expr $height / 30)
+export USER_ICON_Y=$(expr $height / 8)
+export USER_LABEL_SIZE=$(expr $height / 60)
+export USER_LABEL_Y=$(expr $height / 12)
+export TIME_SIZE=$(expr $height / 11)
+export DATE_SIZE=$(expr $height / 70)
+export DATE_Y=$(expr $height / -7)
+
+/usr/bin/hyprlock

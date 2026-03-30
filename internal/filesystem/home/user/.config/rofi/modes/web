@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+if [ -z "$1" ]; then
+    # Set custom prompt when mode is opened/switched to
+    echo -e "\0prompt\x1f"
+    exit 0
+fi
+
+zen-browser --search "$1" >/dev/null 2>&1 &
+disown
