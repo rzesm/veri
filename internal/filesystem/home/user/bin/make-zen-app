@@ -12,7 +12,9 @@ if [[ -z "$name" || "$name" == */* || "$name" == *.* ]]; then
     exit 1
 fi
 
+shopt -s nullglob
 profile_path=(${zen_path}/*.${name_lowercase})
+shopt -u nullglob
 
 # If the web app's profile folder doesn't exist
 # then create a profile using Zen
@@ -27,7 +29,7 @@ if [ ! -e "${profile_path[0]}" ]; then
     ln -sf ${zen_path}/web-app-user.js ${profile_path[0]}/user.js
     ln -sf ${zen_path}/web-app-extensions ${profile_path[0]}/extensions
 
-    echo "Created profile: ${profile_path[0]}"
+    echo "Created web app profile: ${profile_path[0]}"
 fi
 
 # Make a desktop entry
@@ -39,4 +41,4 @@ Exec=zen-browser -P app-$name_lowercase --name=$name_lowercase --new-window $url
 Name=$name
 Icon=$name_lowercase
 EOF
-echo "Created desktop entry: ${desktop_file}"
+echo "Created a desktop entry: ${desktop_file}"

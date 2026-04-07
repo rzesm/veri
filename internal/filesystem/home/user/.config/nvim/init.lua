@@ -1,4 +1,4 @@
--- Check if we are in VS Code
+-- check if vscode
 local is_vscode = vim.g.vscode ~= nil
 
 -- background color (Only for terminal nvim)
@@ -112,7 +112,7 @@ require("lazy").setup({
 
 -- KEYMAPS
 
--- Leader mappings for clipboard
+-- leader mappings for clipboard
 vim.keymap.set({ "n", "v" }, "<leader>y", '"+y')
 vim.keymap.set("n", "<leader>yy", '"+yy')
 vim.keymap.set({ "n", "v" }, "<leader>d", '"+d')
@@ -122,3 +122,6 @@ vim.keymap.set("n", "<leader>P", '"+P')
 
 vim.api.nvim_set_hl(0, "FlashMatch", { fg = "#000000", bg = "#ffffff", bold = true })
 vim.api.nvim_set_hl(0, "FlashLabel", { fg = "#000000", bg = "#ff3333", bold = true })
+
+-- sudo save with w!!
+vim.keymap.set("c", "w!!", "w !run0 tee %", { noremap = true })

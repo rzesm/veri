@@ -1,0 +1,8 @@
+#!/bin/bash
+
+file=$1
+
+pkill swaybg
+swaybg -i ~/.config/hypr/wallpapers/$file -m fill & disown
+rm ~/.config/hypr/wallpaper
+ln -sf ~/.config/hypr/wallpapers/$file ~/.config/hypr/wallpaper

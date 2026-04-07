@@ -28,6 +28,9 @@ ZSH_HIGHLIGHT_STYLES[alias]='fg=white,bold'
 # Restore delete key functionality
 bindkey '^[[3~' delete-char
 
+# Fix word boundaries
+WORDCHARS='_'
+
 bindkey '^[[3;5~' kill-word
 bindkey '\C-h' backward-kill-word
 

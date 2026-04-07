@@ -2,4 +2,4 @@
 Name=Neovim
 Icon=nvim
 Type=Application
-Exec=foot --app-id=neovim nvim
+Exec=foot --app-id=neovim nvim %F

@@ -1,24 +1,21 @@
 #!/bin/bash
 
-bat=$(cat /var/battery)
-
+bat="/sys/class/power_supply/$(cat /var/battery)"
 capacity=$(cat $bat/capacity)
 
-if [[ ! -e "$bat/capacity" ]]; then
-    exit
-fi
+[[ ! -e "$bat/capacity" ]] && exit
 
 # Choose glyph based on battery level
 if [ "$capacity" -ge 80 ]; then
-    glyph=""  # full battery
+    glyph=""
 elif [ "$capacity" -ge 60 ]; then
-    glyph=""  # 3/4 battery
+    glyph=""
 elif [ "$capacity" -ge 40 ]; then
-    glyph=""  # half battery
+    glyph=""
 elif [ "$capacity" -ge 20 ]; then
-    glyph=""  # 1/4 battery
+    glyph=""
 else
-    glyph=""  # empty battery
+    glyph=""
 fi
 
 # Output the glyph and percentage

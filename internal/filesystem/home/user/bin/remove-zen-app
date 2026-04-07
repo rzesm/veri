@@ -7,7 +7,7 @@ profiles_file="$zen_path/profiles.ini"
 
 name_lowercase=$(echo "$name" | tr '[:upper:]' '[:lower:]')
 
-if [[ -z "$name" || "$name" == */* || "$name" == *.* ]]; then
+if [[ "$name" =~ [^a-zA-Z0-9_-] ]]; then
     echo "Invalid name"
     exit 1
 fi
@@ -19,8 +19,11 @@ if [ -f "$desktop_file" ]; then
     echo "Removed desktop entry: $desktop_file"
 fi
 
-# Remove profile folder
+shopt -s nullglob
 profile_path=(${zen_path}/*.app-${name_lowercase})
+shopt -u nullglob
+
+# Remove profile folder
 if [ -e "${profile_path[0]}" ]; then
     rm -rf "${profile_path[0]}"
     echo "Removed profile folder: ${profile_path[0]}"
@@ -70,8 +73,8 @@ awk -v name="app-$name_lowercase" '
   }
 ' "${profiles_file}" > "$tmp"
 
-# atomic replace
+# Atomic replace
 mv -- "$tmp" "$profiles_file"
 trap - EXIT
 
-echo "Made a backup of $profiles_file and tried to remove the profile"
+echo "Made a backup of $profiles_file and remove the web app profile"
