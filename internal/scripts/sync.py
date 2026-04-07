@@ -7,7 +7,7 @@ from config import parse_config, generate_empty_config
 from hardware.hardware import scan_hardware
 
 def ask_to_generate_config():
-    print("sync.py: would you like to generate an empty config? [Y/n] ", end="")
+    print("Would you like to generate an empty config? [Y/n] ", end="")
     if input().strip() not in ["y", "Y", ""]: exit(1)
     
     generate_empty_config()
@@ -16,16 +16,16 @@ def ask_to_generate_config():
     
 def print_changes(profile: Profile):
     if profile.packages:
-        print("\npackages that will be installed:")
+        print("\nPackages that will be installed:")
         print(", ".join(profile.packages))
     if profile.services:
-        print("\nservices that will be enabled:")
+        print("\nServices that will be enabled:")
         print(", ".join(profile.services))
     if profile.gsettings:
-        print("\ngsettings that will be set:")
+        print("\nGsettings that will be set:")
         strings = [' '.join(gsetting) for gsetting in profile.gsettings]
         print("\n".join(strings))
-    print("\nfiles that will be modified:")
+    print("\nFiles that will be modified:")
     sh(f"tree -a --prune {profile.filesystem_path}")
     print()
 
@@ -37,7 +37,7 @@ def main():
     profile = generate_profile(config, hardware)
 
     print_changes(profile)
-    print("sync.py: proceed with system update [Y/n] ", end="")
+    print("Proceed with update? [Y/n] ", end="")
     if input().strip() not in ["y", "Y", ""]: exit(1)
     
     # update system
