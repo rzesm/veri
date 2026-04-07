@@ -1,0 +1,18 @@
+#!/bin/bash
+
+set -euo pipefail
+
+# cd to installer root
+cd "$(dirname "${BASH_SOURCE[0]}")"
+
+if [[ "$EUID" -eq 0 ]]; then
+    echo "sync: error: installer must not be run as root"
+    exit 1
+fi
+
+if ! command -v python >/dev/null; then
+    echo "sync: root password is required"
+    su -c "pacman -S --noconfirm python"
+fi
+
+python internal/scripts/sync.py

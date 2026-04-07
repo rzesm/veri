@@ -1,12 +1,11 @@
 from __future__ import annotations
-
 from functools import lru_cache
 from pathlib import Path
 import re
 import sys
 
-# Vibe coded
-# Prints one of: intel / amd / nvidia-modern / nvidia-legacy
+# Vibe coded, might rewrite fully myself eventually
+# Prints one of: intel / amd / nvidia_modern / nvidia_legacy
 
 SYSFS = Path("/sys")
 PCI_DEVICES = SYSFS / "bus" / "pci" / "devices"
@@ -25,18 +24,14 @@ DISPLAY_CLASS_PREFIXES = {"0300", "0302", "0380"}  # VGA, 3D, display controller
 def read_text(path: Path) -> str:
     return path.read_text(encoding="utf-8", errors="ignore").strip()
 
-
 def read_hex(path: Path) -> int:
     return int(read_text(path), 16)
-
 
 def pci_devices_root(root: Path) -> Path:
     return root / "sys" / "bus" / "pci" / "devices"
 
-
 def parse_hex_pair(vendor: Path, device: Path) -> tuple[int, int]:
     return read_hex(vendor), read_hex(device)
-
 
 @lru_cache(maxsize=1)
 def pci_ids_path() -> Path | None:
@@ -44,7 +39,6 @@ def pci_ids_path() -> Path | None:
         if p.exists():
             return p
     return None
-
 
 @lru_cache(maxsize=None)
 def pci_name_lookup(vendor_hex: int, device_hex: int) -> str | None:
@@ -84,7 +78,6 @@ def pci_name_lookup(vendor_hex: int, device_hex: int) -> str | None:
                     return m.group(2).strip()
 
     return None
-
 
 def gpu_candidates(root: Path):
     devices_root = pci_devices_root(root)
@@ -128,40 +121,45 @@ def gpu_candidates(root: Path):
     candidates.sort(key=lambda x: (-x[0], x[3].as_posix()))
     return candidates
 
-
 def classify_nvidia(device_id: int) -> str:
     name = pci_name_lookup(VENDOR_NVIDIA, device_id)
-    if name:
-        u = name.upper()
+    if not name:
+        return "nvidia-modern"
 
-        # Most NVIDIA PCI IDs on modern cards have an architecture prefix in pci.ids.
-        # This catches Turing/Ampere/Ada/Hopper/Blackwell family names and RTX/GTX 16xx.
-        if re.match(r"^(TU|GA|AD|GH|GB)\b", u): return "nvidia-modern"
-        if " RTX " in f" {u} ": return "nvidia-modern"
-        if re.search(r"\bGTX\s*16\d{2}\b", u): return "nvidia-modern"
-        if re.search(r"\bRTX\s*A\b", u): return "nvidia-modern"
+    u = name.upper()
 
+    # Explicit modern families first
+    if re.search(r"\bRTX\b", u):
+        return "nvidia-modern"
+    if re.search(r"\bGTX\s*16\d{2}\b", u):
+        return "nvidia-modern"
+    if re.search(r"\b(?:TU|GA|AD|GH|GB)\d{3,4}\b", u):
+        return "nvidia-modern"
+
+    # Explicit legacy families
+    if re.search(r"\b(?:G80|G84|G86|G92|G94|G96|G98|GT200)\b", u):
+        return "nvidia-legacy"
+    if re.search(r"\b(?:GF|GK|GM|GP)\d{3,4}\b", u):
+        return "nvidia-legacy"
+    if re.search(r"\bGTX\s*(?:[0-9]{3,4})\b", u):
+        return "nvidia-legacy"
+    if re.search(r"\b(?:GT|GTS|GTX|QUADRO|TESLA|NVS)\s*[0-9]+\b", u):
         return "nvidia-legacy"
 
-    # Modern NVIDIA parts are typically >= 0x1e00.
-    return "nvidia-modern" if device_id >= 0x1E00 else "nvidia-legacy"
-
+    # Unknown NVIDIA part: assume modern
+    return "nvidia-modern"
 
 def classify_gpu(vendor_id: int, device_id: int) -> str:
     if vendor_id == VENDOR_INTEL: return "intel"
     if vendor_id == VENDOR_AMD: return "amd"
     if vendor_id == VENDOR_NVIDIA: return classify_nvidia(device_id)
-    else: return ""
-
-
-def main() -> int:
+    else: return "intel" # Should be harmless 
+    
+def find_gpu() -> str:
     root = Path(sys.argv[1]) if len(sys.argv) > 1 else Path("/")
     candidates = gpu_candidates(root)
+    
+    if not candidates: return ""
 
     _, vendor_id, device_id, _ = candidates[0]
-    print(classify_gpu(vendor_id, device_id))
-    return 0
-
-
-if __name__ == "__main__":
-    main()
+    return classify_gpu(vendor_id, device_id)
