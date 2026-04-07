@@ -12,7 +12,7 @@ fi
 
 if ! command -v python >/dev/null; then
     echo "sync: root password is required"
-    su -c "pacman -S --noconfirm python"
+    su -c "pacman -S python"
 fi
 
 python internal/scripts/sync.py

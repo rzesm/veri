@@ -25,14 +25,17 @@ def ensure_sudo():
     print("runtime.py: finished setting up sudo, please relogin and run the script again")
     exit()
 
-def ensure_package(name: str):
-    if sh(f"sudo pacman -Q {name}", capture=True).returncode == 0: return True
-    sync = sh(f"sudo pacman -S --needed --noconfirm {name}")
+def ensure_packages(packages: list[str]):
+    needed_packages = []
+    for package in packages:
+        if sh(f"sudo pacman -Q {package}", capture=True).returncode != 0:
+            needed_packages.append(needed_packages)
+    sync = sh(f"sudo pacman -S --needed {" ".join(packages)}")
     if sync.returncode != 0:
-        print(f"runtime.py: error: failed to install {name}")
+        print(f"runtime.py: error: failed to install runtime dependencies")
         return False
 
-    print(f"runtime.py: installed {name}")
+    print(f"runtime.py: installed runtime dependencies")
     return True
         
 def ensure_aur():
@@ -50,14 +53,14 @@ def ensure_repository(repository: str):
     # uncomment section
     sh(f"sudo sed -i '/^\\[{repository}\\]/,/^Include/ s/^#//' /etc/pacman.conf")
 
-    sh("sudo pacman -Syu --noconfirm")
+    sh("sudo pacman -Syu")
 
     # verify
     if sh(f"pacman-conf --repo-list | grep -q {repository}").returncode != 0:
         print(f"runtime.py: error: failed to enable {repository}, try editing /etc/pacman.conf manually")
         return False
 
-    print(f"runtime.py: enabled the {repository} repository")
+    print(f"runtime.py: enabled the {repository} repository in /etc/pacman.conf")
     return True
 
 def ensure_yay():
@@ -93,9 +96,6 @@ def ensure_runtime():
         ensure_sudo() and \
         ensure_repository("extra") and \
         ensure_repository("multilib") and \
-        ensure_package("rsync") and \
-        ensure_package("tree") and \
-        ensure_package("git") and \
-        ensure_package("base-devel") and \
+        ensure_packages(["rsync", "tree", "git"]) and \
         ensure_aur() and \
         ensure_yay()
