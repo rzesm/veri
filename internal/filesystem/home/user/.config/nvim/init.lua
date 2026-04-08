@@ -112,13 +112,13 @@ require("lazy").setup({
 
 -- KEYMAPS
 
--- leader mappings for clipboard
-vim.keymap.set({ "n", "v" }, "<leader>y", '"+y')
-vim.keymap.set("n", "<leader>yy", '"+yy')
-vim.keymap.set({ "n", "v" }, "<leader>d", '"+d')
-vim.keymap.set("n", "<leader>dd", '"+dd')
-vim.keymap.set({ "n", "v" }, "<leader>p", '"+p')
-vim.keymap.set("n", "<leader>P", '"+P')
+-- yank paste and delete semantics
+vim.keymap.set({ "n", "v" }, "y", '"+y')
+vim.keymap.set("n", "yy", '"+yy')
+vim.keymap.set({ "n", "v" }, "p", '"+p')
+vim.keymap.set("n", "P", '"+P')
+vim.keymap.set({ "n", "v" }, "d", '"_d')
+vim.keymap.set("n", "dd", '"_dd')
 
 vim.api.nvim_set_hl(0, "FlashMatch", { fg = "#000000", bg = "#ffffff", bold = true })
 vim.api.nvim_set_hl(0, "FlashLabel", { fg = "#000000", bg = "#ff3333", bold = true })
