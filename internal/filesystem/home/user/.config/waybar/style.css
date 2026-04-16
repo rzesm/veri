@@ -1,5 +1,5 @@
 * {
-    font-family: System-ui;
+    font-family: "System-ui";
     font-weight: 700;
     font-size: 14px;
 }
@@ -10,6 +10,25 @@
 
 /* Left */
 
+#cpu {
+    margin-left: 15px;
+    color: rgba(150, 230, 255, 1);
+}
+#cpu.low {
+    color: rgba(150, 255, 120, 1);
+}
+#cpu.medium {
+    color: rgba(255, 230, 120, 1);
+}
+#cpu.high {
+    color: rgba(255, 200, 120, 1);
+}
+#cpu.very_high {
+    color: rgba(255, 120, 120, 1);
+}
+#cpu.extremely_high {
+    color: rgba(255, 60, 60, 1);
+}
 #battery {
     margin-left: 10px;
     font-size: 16px;
@@ -115,7 +134,7 @@
 
 #clock {
     padding-left: 10px;
-    margin-right: 10px;
+    margin-right: 15px;
     font-family: System-ui;
     font-weight: 400;
     font-size: 16px;

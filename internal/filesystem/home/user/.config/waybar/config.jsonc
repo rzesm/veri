@@ -7,20 +7,33 @@
 "margin-bottom": 0,
 "margin-top": 10,
 
-"modules-left": ["battery", "tray"],
+"modules-left": ["cpu", "battery", "tray"],
 "modules-center": ["wlr/taskbar", "hyprland/workspaces", "group/center-icons"],
 "modules-right": ["clock"],
 
 // Left
 
+"cpu": {
+    "format": "●",
+    "interval": 5,
+    "states": {
+        "low": 10,
+        "medium": 20,
+        "high": 35,
+        "very_high": 55,
+        "extremely_high": 70
+    },
+    "tooltip": false
+},
+
 "battery": {
-      "format": "{icon} {capacity}%",
-      "format-charging": "\uf0e7 {icon} {capacity}%",
-      "format-not-charging": "\uf1e6 {icon} {capacity}%",
-      "format-alt": "{icon} {capacity}%",
-      "tooltip": false,
-      "format-icons": ["\uf244", "\uf243", "\uf242", "\uf241", "\uf240"],
-      "on-click": "pkill -f $HOME/.config/waybar/charge-limit.sh || $HOME/.config/waybar/charge-limit.sh"
+    "format": "{icon} {capacity}%",
+    "format-charging": "\uf0e7 {icon} {capacity}%",
+    "format-not-charging": "\uf1e6 {icon} {capacity}%",
+    "format-alt": "{icon} {capacity}%",
+    "tooltip": false,
+    "format-icons": ["\uf244", "\uf243", "\uf242", "\uf241", "\uf240"],
+    "on-click": "pkill -f $HOME/.config/waybar/charge-limit.sh || $HOME/.config/waybar/charge-limit.sh"
 },
 
 "tray": {
