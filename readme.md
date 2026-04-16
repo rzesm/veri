@@ -47,16 +47,16 @@ The installer is meant for a fresh Arch Linux installation. It is possible to in
     Once internet connection and a user account are set up, make sure to switch to the user: 
     
     ```
-    su <username>
-    cd
+    su <username> && cd
     ```
 
     and then run:
 
     ```
-    curl -L https://api.github.com/repos/rzesm/veri/tarball/main -o veri.tar.gz
-    tar -xzf veri.tar.gz
+    curl -L https://api.github.com/repos/rzesm/veri/tarball/main -o veri.tar.gz && tar -xzf veri.tar.gz
     ```
+    
+    This will put the installer in a folder in the current directory.
 
 4. **Kernel parameters (recommended)**
 
@@ -68,7 +68,7 @@ The installer is meant for a fresh Arch Linux installation. It is possible to in
 
 ### Using the installer
 
-After fulfilling the prerequisites, locate the installer's folder. Run the `sync` script inside, which will guide you through the installation/update. Finish an installation by rebooting your computer.
+Run the `sync` script from the installer's directory, which will guide you through the installation/update. Finish an installation by rebooting your computer.
 
 ### Maintaining the system
 
