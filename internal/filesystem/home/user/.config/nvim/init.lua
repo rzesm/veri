@@ -9,6 +9,10 @@ if not is_vscode then
     ]]
 end
 
+-- leader
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+
 -- tab size
 vim.o.tabstop = 1 
 vim.o.expandtab = true
@@ -19,9 +23,6 @@ vim.o.shiftwidth = 4
 vim.o.number = true
 vim.o.relativenumber = true
 
--- leader
-vim.g.mapleader = ","
-vim.g.maplocalleader = ","
 
 -- plugin loader setup
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -90,38 +91,22 @@ require("lazy").setup({
             }
         end,
     },
-
-    {
-        "numToStr/Comment.nvim",
-        enabled = not is_vscode, -- Don't load in VS Code
-        opts = {},
-        keys = {
-            { "<C-/>", function() require("Comment.api").toggle.linewise.current() end, mode = "n" },
-            { 
-                "<C-/>", 
-                function()
-                    local esc = vim.api.nvim_replace_termcodes("<ESC>", true, false, true)
-                    vim.api.nvim_feedkeys(esc, "nx", false)
-                    require("Comment.api").toggle.linewise(vim.fn.visualmode())
-                end, 
-                mode = "v" 
-            },
-        },
-    },
 })
+
+-- make flash colors more visible
+vim.api.nvim_set_hl(0, "FlashMatch", { fg = "#000000", bg = "#ffffff", bold = true })
+vim.api.nvim_set_hl(0, "FlashLabel", { fg = "#000000", bg = "#ff3333", bold = true })
+
+vim.keymap.set("n", "<C-/>", "gcc", { remap = true, desc = "Toggle comment" })
+vim.keymap.set("v", "<C-/>", "gc", { remap = true, desc = "Toggle comment" })
 
 -- KEYMAPS
 
 -- yank paste and delete semantics
-vim.keymap.set({ "n", "v" }, "y", '"+y')
-vim.keymap.set("n", "yy", '"+yy')
-vim.keymap.set({ "n", "v" }, "p", '"+p')
-vim.keymap.set("n", "P", '"+P')
-vim.keymap.set({ "n", "v" }, "d", '"_d')
-vim.keymap.set("n", "dd", '"_dd')
-
-vim.api.nvim_set_hl(0, "FlashMatch", { fg = "#000000", bg = "#ffffff", bold = true })
-vim.api.nvim_set_hl(0, "FlashLabel", { fg = "#000000", bg = "#ff3333", bold = true })
+vim.keymap.set({ "n", "v" }, "<leader>y", '"+y')
+vim.keymap.set({ "n", "v" }, "<leader>p", '"+p')
+vim.keymap.set("n", "<leader>P", '"+P')
+vim.keymap.set({ "n", "v" }, "<leader>d", '"+d')
 
 -- sudo save with w!!
 vim.keymap.set("c", "w!!", "w !run0 tee %", { noremap = true })
