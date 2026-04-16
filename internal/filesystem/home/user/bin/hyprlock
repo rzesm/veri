@@ -11,5 +11,6 @@ export USER_LABEL_Y=$(expr $height / 20)
 export TIME_SIZE=$(expr $height / 11)
 export DATE_SIZE=$(expr $height / 70)
 export DATE_Y=$(expr $height / -7)
+export BATTERY_SIZE=$(expr $height / 70)
 
 /usr/bin/hyprlock
