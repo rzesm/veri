@@ -19,7 +19,7 @@ window {
     location: center;
     anchor: center;
     padding: 10px;
-    width: 500;
+    width: 400;
     spacing: 0;
     children: [mainbox];
     orientation: horizontal;
@@ -28,7 +28,7 @@ window {
 mainbox {
     children: [ inputbar, message, listview];
     background-color: rgba(0, 0, 0, 0.2);
-    border-radius: 30;
+    border-radius: 35;
     border: 2 0 2 0;
     border-color: rgba(255, 255, 255, 0.1);
     padding: 10;
@@ -57,7 +57,7 @@ listview {
     background-color: rgba(0, 0, 0, 0.6);
     border-radius: 25;
     columns: 1;
-    lines: 12;
+    lines: 10;
     spacing: 0;
     layout: vertical;
     padding: 4 4 4 4;

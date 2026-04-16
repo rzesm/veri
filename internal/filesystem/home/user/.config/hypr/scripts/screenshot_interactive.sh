@@ -33,7 +33,7 @@ CHOICE=$(echo -en "$OPTION_OPEN\n$OPTION_SAVE\n$OPTION_COPY\n$OPTION_OCR" | rofi
         background-image: url(\"$PREVIEW_IMG\", both);
         background-color: rgba(0, 0, 0, 0.6);
         padding: 140px;
-        border-radius: 20px;
+        border-radius: 25px;
         expand: false;
     }
 
