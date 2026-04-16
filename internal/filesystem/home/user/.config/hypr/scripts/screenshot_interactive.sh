@@ -6,7 +6,7 @@ rm "$TEMP_IMG"
 mkdir -p "$SAVE_DIR"
 
 # Take the screenshot and check for output
-wayfreeze & PID=$!; sleep .1; grim -g "$(slurp -b 000000b3 -c 000000b3)" $TEMP_IMG; kill $PID
+wayfreeze & PID=$!; sleep .1; grim -g "$(slurp -b 000000b3 -c ffffff20)" $TEMP_IMG; kill $PID
 if [ ! -f "$TEMP_IMG" ]; then
     exit 0
 fi
@@ -53,8 +53,6 @@ CHOICE=$(echo -en "$OPTION_OPEN\n$OPTION_SAVE\n$OPTION_COPY\n$OPTION_OCR" | rofi
 # Handle selection
 case "$CHOICE" in
     *"$OPTION_OPEN"*)
-        wl-copy < $TEMP_IMG
-        notify-send "Image copied"
         qview "$TEMP_IMG"
         ;;
     *"$OPTION_SAVE"*)

@@ -3,10 +3,10 @@
 exec wayfreeze & PID=$!
 sleep .1
 
-GEOM=$(slurp -b 000000b3 -c 000000b3)
+SELECTION=$(slurp -b 000000b3 -c ffffff20)
 
-if [ -n "$GEOM" ]; then
-    grim -g "$GEOM" - | wl-copy
+if [ -n "$SELECTION" ]; then
+    grim -g "$SELECTION" - | wl-copy
     notify-send "Image copied"
 fi
 
