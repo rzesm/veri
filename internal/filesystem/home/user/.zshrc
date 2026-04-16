@@ -31,12 +31,14 @@ bindkey '^[[3~' delete-char
 # Fix word boundaries
 WORDCHARS='_'
 
+# Ctrl movement/deletion
 bindkey '^[[3;5~' kill-word
 bindkey '\C-h' backward-kill-word
-
 bindkey '^[[1;5C' forward-word
 bindkey '^[[1;5D' backward-word
 
-alias ls="ls --color=auto"
+# Aliases
+
+alias ls="eza --group-directories-first -l"
 alias yay="yay --color=auto"
 alias diff="diff --color=auto"

@@ -11,9 +11,12 @@ cpio
 dkms
 egl-wayland
 exfatprogs
+eza
 fastfetch
 ffmpegthumbnailer
 foot
+fuse2
+fuse3
 fzf-tab-git
 git
 gnome-disk-utility
@@ -26,7 +29,6 @@ gst-plugins-bad
 gst-plugins-base
 gst-plugins-good
 gst-plugins-ugly
-gtkmm-4.0
 hyprland
 hyprlock
 hyprmon-bin
