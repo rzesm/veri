@@ -13,6 +13,7 @@
 #cpu {
     margin-left: 15px;
     color: rgba(150, 230, 255, 1);
+    transition-duration: 1000ms;
 }
 #cpu.low {
     color: rgba(150, 255, 120, 1);
@@ -29,12 +30,16 @@
 #cpu.extremely_high {
     color: rgba(255, 60, 60, 1);
 }
+#cpu:hover {
+    color: rgba(255, 255, 255, 0.7);
+    transition-duration: 100ms;
+}
 #battery {
     margin-left: 10px;
     font-size: 16px;
     transition-duration: 100ms;
 }
-#battery:hover { color: rgba(255,255,255,0.7); }
+#battery:hover { color: rgba(255, 255, 255, 0.7); }
 
 #tray { margin-left: 10px; }
 
@@ -56,6 +61,12 @@
     transition-duration: 200ms;
 }
 #taskbar button.active {
+    padding-left: 10px;
+    padding-right: 10px;
+    border-style: solid;
+    box-shadow: inset 0 0 0 15px rgba(0, 0, 0, 0.7);
+}
+#taskbar button:hover {
     padding-left: 10px;
     padding-right: 10px;
     border-style: solid;
@@ -140,4 +151,4 @@
     font-size: 16px;
     transition-duration: 100ms;
 }
-#clock:hover { color: rgba(255,255,255,0.7); }
+#clock:hover { color: rgba(255, 255, 255, 0.7); }

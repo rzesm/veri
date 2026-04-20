@@ -23,7 +23,8 @@
         "very_high": 55,
         "extremely_high": 70
     },
-    "tooltip": false
+    "tooltip": false,
+    "on-click": "pkill btop || kitty --app-id=btop btop"
 },
 
 "battery": {
