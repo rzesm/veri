@@ -1,4 +1,4 @@
-![](assets/veri_white.png)
+![](assets/veri_wide.png)
 
 veri is a minimal but polished and visually pleasing setup on top of Arch Linux and Hyprland. It is aimed at experienced users who need freedom, but also value their time. The project's policy and architecture support tweaking every single aspect of an Arch Linux system, while providing a stable baseline for the configuration of a modern desktop. 
 
