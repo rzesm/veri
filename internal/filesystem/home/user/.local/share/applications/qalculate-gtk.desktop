@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=1.0
+Name=Calculator
+TryExec=qalculate-gtk
+Exec=qalculate-gtk
+Icon=qalculate
+Terminal=false
+Type=Application
+StartupNotify=true
+StartupWMClass=qalculate-gtk
+Categories=GTK;Utility;Calculator;Education;Science;Math;
+Keywords=calculation;arithmetic;scientific;financial;
