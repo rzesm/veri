@@ -42,3 +42,5 @@ bindkey '^[[1;5D' backward-word
 alias ls="eza --group-directories-first -l"
 alias yay="yay --color=auto"
 alias diff="diff --color=auto"
+
+alias nv="nvim"
