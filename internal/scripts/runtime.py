@@ -35,7 +35,6 @@ def ensure_packages(packages: list[str]):
         print(f"runtime.py: error: failed to install runtime dependencies")
         return False
 
-    print(f"runtime.py: installed runtime dependencies")
     return True
         
 def ensure_aur():
