@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=0.9.0
+Type=Application
+Name=Clipse GUI
+GenericName=Clipboard Manager
+Comment=GTK Clipboard Manager
+Exec=/usr/bin/clipse-gui
+Icon=clipse-gui
+Terminal=false
+Categories=Utility;GTK;
+StartupNotify=true
+StartupWMClass=org.d7om.ClipseGUI
+Hidden=true

@@ -3,7 +3,7 @@ window {
 }
 
 .titlebar {
-	background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.7);
 }
 
 statuspage {
@@ -18,3 +18,12 @@ statuspage {
     background-color: rgba(0, 0, 0, 0);
     border-color: rgba(0, 0, 0, 0);
 }
+
+toolbarview {
+    background-color: rgba(0, 0, 0, 0);
+}
+
+list {
+    background-color: rgba(0, 0, 0, 0);
+}
+
