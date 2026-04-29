@@ -10,6 +10,6 @@ git clone https://github.com/hyprwm/hyprland-plugins
 cd hyprland-plugins
 mkdir -p build
 cmake -S . -B build
-cmake --build build
+cmake --build build --target hyprexpo
 
 echo "sync_hyprland_plugins.sh: finished syncing Hyprland plugins"
