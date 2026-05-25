@@ -1,6 +1,6 @@
 ![](assets/veri_wide.png)
 
-veri is a minimal but polished and visually pleasing setup on top of Arch Linux and Hyprland. It is aimed at experienced users who need freedom, but also value their time. The project's policy and architecture support tweaking every single aspect of an Arch Linux system, while providing a stable baseline for the configuration of a modern desktop. 
+veri is a minimal but polished and visually pleasing setup on top of Arch Linux and Hyprland. It is aimed at experienced users who need freedom, but also value their time. The project's policy and architecture support tweaking every single aspect of an Arch Linux system, while providing a stable baseline for the configuration of a modern desktop.
 
 ![](assets/desktop.png)
 
@@ -17,6 +17,11 @@ veri is a minimal but polished and visually pleasing setup on top of Arch Linux 
 - Clipboard history with images
 - Emoji and unicode picker
 - Numerous small utilities, like a zoom lens
+
+### Notice
+
+Due to Arch Linux' nature things may change over time or break, affecting this project. There is no all time guarantee of stability of new installs, however I will attempt to deliver hotfixes as quickly as possible.
+
 
 # Installation guide
 
