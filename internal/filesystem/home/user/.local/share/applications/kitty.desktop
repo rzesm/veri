@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=Terminal
+Icon=terminal
+Type=Application
+Exec=kitty
+
