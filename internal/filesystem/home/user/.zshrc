@@ -13,7 +13,10 @@ SAVEHIST=2000
 autoload -Uz compinit && compinit
 autoload -Uz colors && colors
 
-# Autocomplete
+# Fzf features
+source <(fzf --zsh)
+
+# Fzf tab
 source /usr/share/zsh/plugins/fzf-tab-git/fzf-tab.plugin.zsh
 
 # Syntax highlighting
