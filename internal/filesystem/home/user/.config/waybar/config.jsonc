@@ -61,7 +61,7 @@
     "orientation": "horizontal",
     "modules": [
         "custom/launcher",
-        "custom/overview",
+        // "custom/overview",
         "custom/power",
         "idle_inhibitor",
         "pulseaudio",

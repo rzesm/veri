@@ -22,14 +22,13 @@ CORE = f"""\
 ### CORE ###
 ############
 
-plugin = /home/{USERNAME}/.local/share/veri/hyprland-plugins/build/hyprexpo/libhyprexpo.so
-
 exec-once = hyprctl dispatch submap empty
 exec-once = swaybg -i /home/{USERNAME}/.config/hypr/wallpaper -m fill
 exec-once = sleep 1 && hyprlock && hyprctl dispatch submap reset && waybar
 exec-once = clipse -listen
 exec-once = /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec-once = swayidle -w timeout 600 'systemctl suspend' before-sleep 'hyprlock &'
+exec-once = hyprexpose --allow-mouse
 
 submap = empty
 bind = , _, submap, empty
