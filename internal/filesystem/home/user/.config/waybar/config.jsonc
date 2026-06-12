@@ -50,7 +50,7 @@
     "tooltip-format": "{title}",
     "on-click": "activate",
     "on-click-middle": "close",
-    "ignore-list": ["org.twosheds.iwgtk", "com.saivert.pwvucontrol", "com.ezratweaver.AdwBluetooth", "yad.power", "zenity", "clipse", "unicode-input", "polkit-gnome-authentication-agent-1", "yad.charge", "yad.calendar"]
+    "ignore-list": ["rzes.adwifi", "com.saivert.pwvucontrol", "com.ezratweaver.AdwBluetooth", "yad.power", "zenity", "clipse", "unicode-input", "polkit-gnome-authentication-agent-1", "yad.charge", "yad.calendar"]
 },
 
 "hyprland/workspaces": {
@@ -85,7 +85,7 @@
 
 "custom/power": {
     "format": "\uf011",
-    "on-click": "pkill -f \"$HOME/.config/waybar/power.sh\" || (pkill iwgtk; pkill adw-bluetooth; pkill pwvucontrol; \"$HOME/.config/waybar/power.sh\")",
+    "on-click": "pkill -f \"$HOME/.config/waybar/power.sh\" || (pkill adwifi; pkill adw-bluetooth; pkill pwvucontrol; \"$HOME/.config/waybar/power.sh\")",
     "tooltip": false
 },
 
@@ -97,7 +97,7 @@
 "pulseaudio": {
     "format": "\uf028",
     "tooltip-format": "{desc} ({volume}%)",
-    "on-click": "pkill pwvucontrol || (pkill -f \"$HOME/.config/waybar/power.sh\"; pkill iwgtk; pkill adw-bluetooth; pwvucontrol)"
+    "on-click": "pkill pwvucontrol || (pkill -f \"$HOME/.config/waybar/power.sh\"; pkill adwifi; pkill adw-bluetooth; pwvucontrol)"
 },
 
 "network": {
@@ -105,7 +105,7 @@
     "tooltip-format": "Connected to {essid}",
     "tooltip-format-disabled": "Wi-Fi disabled",
     "tooltip-format-disconnected": "Wi-Fi not connected",
-    "on-click": "pkill iwgtk || (pkill -f \"$HOME/.config/waybar/power.sh\"; pkill pwvucontrol; pkill adw-bluetooth; iwgtk)"
+    "on-click": "pkill adwifi || (pkill -f \"$HOME/.config/waybar/power.sh\"; pkill pwvucontrol; pkill adw-bluetooth; adwifi)"
 },
 
 "bluetooth": {
@@ -114,7 +114,7 @@
     "tooltip-format-disabled": "Bluetooth disabled",
     "tooltip-format-off": "Bluetooth disabled",
     "tooltip-format-connected": "Connected to {device_alias}",
-    "on-click": "pkill adw-bluetooth || (pkill -f \"$HOME/.config/waybar/power.sh\"; pkill pwvucontrol; pkill iwgtk; adw-bluetooth)"
+    "on-click": "pkill adw-bluetooth || (pkill -f \"$HOME/.config/waybar/power.sh\"; pkill pwvucontrol; pkill adwifi; adw-bluetooth)"
 },
 
 // Right
