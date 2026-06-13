@@ -1,8 +1,8 @@
 import os
 
-from config import Config, parse_values
-from hardware.hardware import Hardware
-from shell import sh
+from scripts.config import Config, parse_values
+from scripts.hardware.hardware import Hardware
+from scripts.shell import sh
 
 def remove_redundant(services: list[str]):
     output = []

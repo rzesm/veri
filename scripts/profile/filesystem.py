@@ -3,8 +3,8 @@ import os
 from pathlib import Path
 from textwrap import dedent
 
-from config import Config
-from shell import sh
+from scripts.config import Config
+from scripts.shell import sh
 
 USERNAME = sh("whoami", capture=True).stdout.strip()
 FILESYSTEM_PATH = "/tmp/veri-filesystem"

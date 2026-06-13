@@ -1,12 +1,12 @@
 from dataclasses import dataclass
 
-from config import Config
-from hardware.hardware import Hardware
-from shell import sh
-from profile.packages import generate_packages
-from profile.services import generate_services
-from profile.gsettings import generate_gsettings
-from profile.filesystem import generate_filesystem
+from scripts.config import Config
+from scripts.hardware.hardware import Hardware
+from scripts.shell import sh
+from scripts.profile.packages import generate_packages
+from scripts.profile.services import generate_services
+from scripts.profile.gsettings import generate_gsettings
+from scripts.profile.filesystem import generate_filesystem
 
 @dataclass
 class Profile:

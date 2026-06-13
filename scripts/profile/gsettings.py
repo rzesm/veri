@@ -1,5 +1,5 @@
-from config import Config, parse_values
-from shell import sh
+from scripts.config import Config, parse_values
+from scripts.shell import sh
 
 def remove_redundant(gsettings: list[(str, str, str)]):
     output = []

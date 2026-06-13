@@ -1,10 +1,10 @@
 import os
 
-from profile.profile import Profile, generate_profile
-from shell import sh
-from runtime import ensure_runtime
-from config import parse_config, generate_empty_config
-from hardware.hardware import scan_hardware
+from scripts.profile.profile import Profile, generate_profile
+from scripts.shell import sh
+from scripts.runtime import ensure_runtime
+from scripts.config import parse_config, generate_empty_config
+from scripts.hardware.hardware import scan_hardware
 
 def ask_to_generate_config():
     print("Would you like to generate an empty config? [Y/n] ", end="")

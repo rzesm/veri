@@ -15,4 +15,4 @@ if ! command -v python >/dev/null; then
     su -c "pacman -S python"
 fi
 
-python internal/scripts/sync.py
+python scripts/sync.py

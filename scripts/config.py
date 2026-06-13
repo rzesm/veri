@@ -3,7 +3,7 @@ import os
 from textwrap import dedent
 from typing import TextIO
 
-from shell import sh
+from scripts.shell import sh
 
 @dataclass
 class Config:

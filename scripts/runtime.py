@@ -1,4 +1,4 @@
-from shell import sh
+from scripts.shell import sh
 
 def ensure_sudo():
     # check access

@@ -1,9 +1,9 @@
 import os
 from dataclasses import dataclass
 from enum import Enum
-from shell import sh
+from scripts.shell import sh
 
-from hardware.gpu import find_gpu
+from scripts.hardware.gpu import find_gpu
 
 class GPUType(Enum):
     amd = "amd"
