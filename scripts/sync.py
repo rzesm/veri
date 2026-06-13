@@ -62,10 +62,6 @@ def main():
     if "nozsh" not in config.flags:
         sh("sudo chsh -s /usr/bin/zsh $username")
         
-    # sync hyprland plugins
-    if "noplugins" not in config.flags:
-        sh("internal/scripts/sync_hyprland_plugins.sh")
-        
     # clean up
     sh(f"sudo rm -rf {profile.filesystem_path}")
     
