@@ -14,17 +14,38 @@ def ask_to_generate_config():
     
     exit()
     
+def get_available_package_version(name):
+    return sh(
+        f"LC_ALL=C yay -Si {name} | sed -n 's/^Version\\s*:\\s*//p'",
+        capture=True).stdout.strip()
+
 def print_changes(profile: Profile):
-    if profile.packages:
+    if profile.packages_versions:
+        version_mismatches = 0
         print("\nPackages that will be installed:")
-        [print(f"- {package}") for package in profile.packages]
+        for (package, required_version) in profile.packages_versions:
+            available_version = get_available_package_version(package)
+            if not required_version or (available_version == required_version):
+                print(f"- {package} {available_version}")
+            else:
+                version_mismatches += 1
+                print(f"- {package} {available_version} ({required_version} required)")
+        if version_mismatches:
+            print(
+                f"Some packages are available with newer versions than required. "
+                "They should not cause issues, but keep them in mind if something breaks. "
+                "Downgrading or modifying configuration files may be required."
+            )
+
     if profile.services:
         print("\nServices that will be enabled:")
         print(", ".join(profile.services))
+
     if profile.gsettings:
         print("\nGsettings that will be set:")
         strings = [' '.join(gsetting) for gsetting in profile.gsettings]
         print("\n".join(strings))
+
     print("\nFiles that will be modified:")
     sh(f"tree -a --prune {profile.filesystem_path}")
     print()
@@ -45,7 +66,7 @@ def main():
         sh("yay --noconfirm")
 
     # install packages
-    sh(f"yay -S --needed --noconfirm {" ".join(profile.packages)}")
+    sh(f"yay -S --needed --noconfirm {" ".join(profile.packages_versions)}")
 
     # enable services
     for service in profile.services:

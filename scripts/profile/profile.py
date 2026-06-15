@@ -10,7 +10,7 @@ from scripts.profile.filesystem import generate_filesystem
 
 @dataclass
 class Profile:
-    packages: list[str]
+    packages_versions: list[str]
     services: list[str]
     gsettings: list[str]
     filesystem_path: str

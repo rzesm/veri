@@ -1,8 +1,22 @@
 import os
+from typing import TextIO
 
-from scripts.config import Config, parse_values
+from scripts.config import Config
 from scripts.hardware.hardware import Hardware
 from scripts.shell import sh
+
+def parse_packages_versions(file: TextIO) -> list[str]:
+    values = []
+
+    for line in file:
+        line = line.strip()
+        if line.startswith('#'): continue
+        
+        items = line.split()
+        if len(items) == 1: values.append((items[0], None))
+        else: values.append((items[0], items[1]))
+        
+    return values
 
 def remove_redundant(packages: list[str]):
     output = []
@@ -15,7 +29,9 @@ def remove_redundant(packages: list[str]):
     return output
 
 def generate_packages(config: Config, hardware: Hardware):
-    base_packages = parse_values(open("internal/packages"))
+    base_packages_versions = parse_packages_versions(open("internal/packages"))
+    base_packages = [item[0] for item in base_packages_versions]
+
     ignored_packages = config.ignored_packages
     hardware_packages = []
 
@@ -37,7 +53,14 @@ def generate_packages(config: Config, hardware: Hardware):
         hardware_packages.append("nvidia-580xx-utils")
         hardware_packages.append("lib32-nvidia-580xx-utils")
         
-    final_packages = list(set(base_packages + hardware_packages) - set(ignored_packages))
-    final_packages.sort()
+    configured_packages = list(set(base_packages + hardware_packages) - set(ignored_packages))
+    configured_packages.sort()
+    final_packages = remove_redundant(configured_packages)
+    
+    version_lookup = dict(base_packages_versions)
+    
+    final_packages_versions = [
+        (package, version_lookup[package]) for package in final_packages
+    ]
 
-    return remove_redundant(final_packages)
+    return final_packages_versions
