@@ -6,17 +6,17 @@ Veri is a minimal but polished and visually pleasing setup on top of Arch Linux 
 
 ### Notable features
 
-- Complete minimal desktop experience largely based on GTK apps
-- Extensive system navigation that enables many tasks with only mouse or keyboard input for convenience
+- Complete minimal desktop largely based on GTK apps
+- Extensive and convenient system navigation
 - Unified search (applications, shell, web search, and calculator), powered by Rofi
 - Shell setup powered by Zsh
-- Multiple touchpad gestures, including volume and screen brightness control while holding the Copilot key
+- Multiple touchpad gestures, including volume and screen brightness control
+- Desktop level zoom
 - Screenshot tool with text recognition
 - Instant web app setup based on Zen browser
 - Control over charging for laptop batteries
 - Clipboard history with images
 - Emoji and unicode picker
-- Numerous small utilities, like a zoom lens
 
 ### Notice
 
