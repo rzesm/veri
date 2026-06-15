@@ -1,4 +1,5 @@
 adw-bluetooth
+adwifi-git
 base-devel
 bc
 bluez
@@ -36,7 +37,6 @@ hyprmon-bin
 hyprpicker
 hyprshot
 iwd
-adwifi
 kitty
 lib32-mesa-utils
 lib32-vulkan-icd-loader

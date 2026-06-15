@@ -17,7 +17,7 @@ def ask_to_generate_config():
 def print_changes(profile: Profile):
     if profile.packages:
         print("\nPackages that will be installed:")
-        print(", ".join(profile.packages))
+        [print(f"- {package}") for package in profile.packages]
     if profile.services:
         print("\nServices that will be enabled:")
         print(", ".join(profile.services))
