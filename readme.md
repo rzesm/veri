@@ -77,4 +77,4 @@ Run the `sync` script from the installer's directory, which will guide you throu
 
 ### Maintaining the system
 
-It is completely fine to maintain the system as any other Arch Linux installation. However, getting new upgrades is available by pulling the latest installer. As this is a young project, many features are yet to come.
+It is completely fine to maintain the system as any other Arch Linux setup. Updating Veri itself is also possible via the `update-veri` command added during installation.
