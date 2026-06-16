@@ -73,7 +73,7 @@ def main():
         sh(f"sudo systemctl enable {service}")
 
     # copy files
-    sh(f"sudo rsync -aHAX --backup --suffix=.bak {profile.filesystem_path}/ /")
+    sh(f"sudo rsync -aHAXP --backup --suffix=.bak {profile.filesystem_path}/ /")
     
     # set gsettings
     for gsetting in profile.gsettings:
