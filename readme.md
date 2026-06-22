@@ -22,6 +22,15 @@ Veri is a minimal but polished and visually pleasing setup on top of Arch Linux 
 
 Due to Arch Linux' nature things may change over time or break, affecting this project. There is no all time guarantee of stability of new installs, however I will attempt to deliver hotfixes as quickly as possible.
 
+### Known issues
+
+Temporarily the `adwifi-git` package must be installed manually because of the AUR malware attack:
+
+```
+git clone https://github.com/rzesm/adwifi
+cd adwifi/package
+makepkg -si
+```
 
 # Installation guide
 
@@ -73,8 +82,8 @@ The installer is meant for a fresh Arch Linux installation. It is possible to in
 
 ### Using the installer
 
-Run the `sync` script from the installer's directory, which will guide you through the installation/update. Finish an installation by rebooting your computer.
+Run the `sync` script from the installer's directory, which will guide you through the installation. Reboot your computer afterwards.
 
 ### Maintaining the system
 
-It is completely fine to maintain the system as any other Arch Linux setup. Updating Veri itself is also possible via the `update-veri` command added during installation.
+Once installed, updating Veri is possible via the `update-veri` command, which allows for pulling upstream features and fixes. Besides that, traditional maintenance methods of Arch Linux also apply and are sufficient. 
