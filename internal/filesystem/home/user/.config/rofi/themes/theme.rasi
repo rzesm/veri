@@ -26,7 +26,7 @@ window {
 }
 
 mainbox {
-    children: [ inputbar, message, listview];
+    children: [inputbar, message, listview];
     background-color: rgba(0, 0, 0, 0.2);
     border-radius: 35;
     border: 2 0 2 0;
@@ -36,6 +36,7 @@ mainbox {
 }
 
 inputbar {
+    children: [prompt, entry];
     padding: 5 10 5 10;
     border-radius: 25;
     background-color: rgba(255, 255, 255, 0);
