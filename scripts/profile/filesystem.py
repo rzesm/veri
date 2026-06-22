@@ -17,24 +17,6 @@ command = "start-hyprland > /dev/null 2>&1"
 user = "{USERNAME}"
 """
 
-CORE = f"""\
-############
-### CORE ###
-############
-
-exec-once = hyprctl dispatch submap empty
-exec-once = swaybg -i /home/{USERNAME}/.config/hypr/wallpaper -m fill
-exec-once = sleep 1 && hyprlock && hyprctl dispatch submap reset && waybar
-exec-once = clipse -listen
-exec-once = /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec-once = swayidle -w timeout 600 'systemctl suspend' before-sleep 'hyprlock &'
-exec-once = hyprexpose --allow-mouse
-
-submap = empty
-bind = , _, submap, empty
-submap = reset
-"""
-
 def remove_redundant():
     filesystem_path = Path(FILESYSTEM_PATH)
     root = Path("/")
@@ -65,9 +47,6 @@ def generate_filesystem(config: Config):
     
     sh(f"mkdir -p {FILESYSTEM_PATH}/etc/greetd")
     open(f"{FILESYSTEM_PATH}/etc/greetd/config.toml", "w").write(GREETD)
-
-    sh(f"mkdir -p {FILESYSTEM_PATH}/home/{USERNAME}/.config/hypr")
-    open(f"{FILESYSTEM_PATH}/home/{USERNAME}/.config/hypr/core.conf", "w").write(CORE)
 
     
     # remove ignored files
