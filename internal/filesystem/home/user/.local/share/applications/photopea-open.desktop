@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Photopea
+Icon=photopea
+Type=Application
+NoDisplay=true
+Exec=python /home/rzes/.config/hypr/scripts/photopea_open.py %F
+
