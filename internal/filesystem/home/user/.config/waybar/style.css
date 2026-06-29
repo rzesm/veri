@@ -1,3 +1,10 @@
+@keyframes blink
+{
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
 * {
     font-family: "System-ui";
     font-weight: 700;
@@ -34,6 +41,14 @@
     color: rgba(255, 255, 255, 0.7);
     transition-duration: 100ms;
 }
+#custom-recording {
+    color: rgba(255, 60, 60, 1);
+    margin-left: 10px;
+    animation-name: blink;
+    animation-duration: 2s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
 #battery {
     margin-left: 10px;
     font-size: 16px;
@@ -47,30 +62,28 @@
 
 #taskbar {
     margin: 0px 5px;
-    background: rgba(0, 0, 0, 0);
+    border-radius: 99px;
+    background: rgba(0, 0, 0, 0.2);
 }
 #taskbar button {
     min-height: 0px;
-    margin: 0px 1px;
+    margin: 0px -1px;
     padding: 0px 3px;
-    border-radius: 99px;
-    border-top: 1.5px solid rgba(255, 255, 255, 0.2);
-    border-bottom: 1.5px solid rgba(255, 255, 255, 0.1);
-    border-left: none;
-    border-right: none;
     transition-duration: 200ms;
+    background: rgba(0, 0, 0, 0);
 }
-#taskbar button.active {
-    padding-left: 10px;
-    padding-right: 10px;
-    border-style: solid;
-    box-shadow: inset 0 0 0 15px rgba(0, 0, 0, 0.7);
-}
+#taskbar button.active, 
 #taskbar button:hover {
-    padding-left: 10px;
-    padding-right: 10px;
-    border-style: solid;
-    box-shadow: inset 0 0 0 15px rgba(0, 0, 0, 0.7);
+    margin: 0px 3px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+#taskbar > button:first-child {
+    margin-left: 0px;
+    padding-left: 3px;
+}
+#taskbar > button:last-child {
+    margin-right: 0px;
+    padding-right: 3px;
 }
 
 #workspaces {
@@ -86,14 +99,14 @@
 #workspaces button {
     min-height: 0px;
     margin: 2px 2px;
-    padding: 0px 3px;
+    padding: 0px 0px;
     transition-duration: 200ms;
     border-radius: 999px;
 }
 #workspaces button:hover,
 #workspaces button.visible {
     background: rgba(255, 255, 255, 0.1);
-    padding: 0px 10px;
+    padding: 0px 8px;
 }
 
 #center-icons > widget > * {
@@ -105,15 +118,15 @@
     border-left: none;
     border-right: none;
     box-shadow: inset 0 0 0 15px rgba(0, 0, 0, 0.7);
-    padding-left: 14px;
-    padding-right: 14px;
+    padding-left: 10px;
+    padding-right: 10px;
     transition-duration: 200ms;
     border-radius: 0;
     font-size: 15px;
 }
 #center-icons > widget > *:hover {
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 16px;
+    padding-right: 16px;
     box-shadow: inset 0 0 0 15px rgba(40, 40, 40, 0.7);
 }
 #center-icons > widget:first-child > * {

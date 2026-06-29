@@ -7,7 +7,7 @@
 "margin-bottom": 0,
 "margin-top": 10,
 
-"modules-left": ["cpu", "battery", "tray"],
+"modules-left": ["cpu", "battery", "custom/recording", "tray"],
 "modules-center": ["wlr/taskbar", "hyprland/workspaces", "group/center-icons"],
 "modules-right": ["clock"],
 
@@ -25,6 +25,13 @@
     },
     "tooltip": false,
     "on-click": "pkill btop || kitty --app-id=btop btop"
+},
+
+"custom/recording": {
+    "exec": "pgrep wf-recorder > /dev/null && echo '●' || echo ''",
+    "interval": "once",
+    "signal": 1,
+    "tooltip": false
 },
 
 "battery": {
