@@ -66,7 +66,7 @@ def main():
         sh("yay --noconfirm")
 
     # install packages
-    sh(f"yay -S --needed --noconfirm {" ".join(profile.packages_versions)}")
+    sh(f"yay -S --needed --noconfirm {" ".join([name for name, _ in profile.packages_versions])}")
 
     # enable services
     for service in profile.services:
