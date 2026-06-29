@@ -109,4 +109,4 @@ vim.keymap.set("n", "<leader>P", '"+P')
 vim.keymap.set({ "n", "v" }, "<leader>d", '"+d')
 
 -- sudo save with w!!
-vim.keymap.set("c", "w!!", "w !run0 tee %", { noremap = true })
+vim.keymap.set("c", "w!!", "w !sudo -A tee %", { noremap = true })
