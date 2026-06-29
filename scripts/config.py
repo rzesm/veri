@@ -1,7 +1,7 @@
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 import os
+import configparser
 from textwrap import dedent
-from typing import TextIO
 
 from scripts.shell import sh
 
@@ -10,81 +10,78 @@ class Config:
     ignored_files: list[str] = None
     ignored_services: list[str] = None
     ignored_packages: list[str] = None
-    ignored_gsettings: list[(str, str)] = None
+    ignored_gsettings: list[tuple[str, str]] = None
     flags: list[str] = None
     
-def parse_values(file: TextIO) -> list[str]:
-    values = []
-
-    for line in file:
-        line = line.strip()
-        if line.startswith('#'): continue
-        values.append(line)
-        
-    return values
-    
-def parse_gsettings(file: TextIO):
-    gsettings = []
-
-    for line in file:
-        line = line.strip()
-        if line.startswith('#'): continue
-        gsettings.append(tuple(line.split(' ', 1)))
-
-    return gsettings
-    
 def parse_config():
-    print("config.py: loading config from ~/.config/veri")
+    config_path = os.path.expanduser("~/.config/veri/installer.conf")
+    print(f"config.py: loading config from {config_path}")
+
+    if not os.path.exists(config_path):
+        print("config.py: error: config file does not exist.")
+        return None
 
     try:
+        parser = configparser.ConfigParser(allow_no_value=True)
+        
+        # enable case sensitivity
+        parser.optionxform = str 
+        
+        parser.read(config_path)
         config = Config()
         
-        config.flags = parse_values(open(os.path.expanduser("~/.config/veri/flags.conf"), "r"))
-        config.ignored_files = parse_values(open(os.path.expanduser("~/.config/veri/ignore/files.conf"), "r"))
-        config.ignored_services = parse_values(open(os.path.expanduser("~/.config/veri/ignore/services.conf"), "r"))
-        config.ignored_packages = parse_values(open(os.path.expanduser("~/.config/veri/ignore/packages.conf"), "r"))
-        config.ignored_gsettings = parse_gsettings(open(os.path.expanduser("~/.config/veri/ignore/gsettings.conf"), "r"))
-        
+        if parser.has_section("flags"):
+            config.flags = parser.options("flags")
+            
+        if parser.has_section("ignored_files"):
+            config.ignored_files = parser.options("ignored_files")
+            
+        if parser.has_section("ignored_services"):
+            config.ignored_services = parser.options("ignored_services")
+            
+        if parser.has_section("ignored_packages"):
+            config.ignored_packages = parser.options("ignored_packages")
+            
+        if parser.has_section("ignored_gsettings"):
+            config.ignored_gsettings = [
+                tuple(line.split(' ', 1)) for line in parser.options("ignored_gsettings") if ' ' in line
+            ]
+            
         return config
     except Exception as e:
         print(f"config.py: error: failed to parse config, the installer will exit: {e}")
         return None
-    
+        
 def generate_empty_config():
-    FLAGS = dedent("""\
-        # Extra flags to apply during installation, each in a new line
-        # Here's a list of available flags:
-        # nozsh - skips changing the user's shell to zsh if applicable
-        # nosyu - skips full system upgrade
-        # noplugins - skips syncing Hyprland plugins
-        # nowebapps - skips the setup of system web apps
-    """)
+    CONFIG_CONTENT = dedent("""\
+        [flags]
+        # Extra flags to apply during installation, each on a new line.
+        # Uncomment a flag to enable it:
+        # nozsh
+        # nosyu
+        # nowebapps
 
-    FILES = dedent("""\
-        # A list of paths of files to skip in the installation process, each in a new line
-        # Important: each path must be absolute, e.g. /home/user/.config/hypr/host.conf
-        # Directories can also be included, just like regular files
-    """)
+        [ignored_files]
+        # A list of absolute paths of files or directories to skip.
+        # Example: /home/user/.config/hypr/host.lua
 
-    GSETTINGS = dedent("""\
-        # A list of gsettings to skip in the installation process, each in a new line
-        # Each gsetting consists of a directory name and a setting name, separated by a space
-    """)
+        [ignored_services]
+        # A list of names of systemd services to skip.
 
-    PACKAGES = dedent("""\
-        # A list of names of packages to skip in the installation process, each in a new line
-    """)
+        [ignored_packages]
+        # A list of names of packages to skip.
 
-    SERVICES = dedent("""\
-        # A list of names of services to skip in the installation process, each in a new line
+        [ignored_gsettings]
+        # A list of gsettings to skip in the installation process.
+        # Format: schema setting
+        # Example: org.gnome.desktop.interface gtk-theme
     """)
     
-    sh("rm -rf ~/.config/veri")
-    sh("mkdir -p ~/.config/veri/ignore")
-    open(os.path.expanduser("~/.config/veri/flags.conf"), "w").write(FLAGS)
-    open(os.path.expanduser("~/.config/veri/ignore/files.conf"), "w").write(FILES)
-    open(os.path.expanduser("~/.config/veri/ignore/gsettings.conf"), "w").write(GSETTINGS)
-    open(os.path.expanduser("~/.config/veri/ignore/packages.conf"), "w").write(PACKAGES)
-    open(os.path.expanduser("~/.config/veri/ignore/services.conf"), "w").write(SERVICES)
+    sh("mkdir -p ~/.config/veri") 
+
+    config_path = os.path.expanduser("~/.config/veri/installer.conf")
     
-    print("config.py: generated an empty config at ~/.config/veri")
+    with open(config_path, 'w') as f:
+        f.write(CONFIG_CONTENT)
+        
+    print(f"config.py: generated an empty config in {config_path}")

@@ -1,5 +1,17 @@
-from scripts.config import Config, parse_values
+from typing import TextIO
+
+from scripts.config import Config
 from scripts.shell import sh
+
+def parse_values(file: TextIO) -> list[str]:
+    values = []
+
+    for line in file:
+        line = line.strip()
+        if line.startswith('#'): continue
+        values.append(line)
+
+    return values 
 
 def remove_redundant(gsettings: list[(str, str, str)]):
     output = []
@@ -13,8 +25,6 @@ def remove_redundant(gsettings: list[(str, str, str)]):
             output.append(gsetting)
             
     return output
-    
-
 
 def generate_gsettings(config: Config):
     base = parse_values(open("internal/gsettings"))

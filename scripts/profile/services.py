@@ -1,8 +1,19 @@
 import os
+from typing import TextIO
 
-from scripts.config import Config, parse_values
+from scripts.config import Config
 from scripts.hardware.hardware import Hardware
 from scripts.shell import sh
+
+def parse_values(file: TextIO) -> list[str]:
+    values = []
+
+    for line in file:
+        line = line.strip()
+        if line.startswith('#'): continue
+        values.append(line)
+
+    return values 
 
 def remove_redundant(services: list[str]):
     output = []
@@ -13,7 +24,6 @@ def remove_redundant(services: list[str]):
             output.append(service)
     
     return output
-
 
 def generate_services(config: Config, hardware: Hardware):
     base_services = parse_values(open("internal/services"))
