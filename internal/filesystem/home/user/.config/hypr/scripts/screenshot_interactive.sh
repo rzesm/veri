@@ -14,11 +14,11 @@ fi
 PREVIEW_IMG="/tmp/ssm_padded.png"
 magick "$TEMP_IMG" -resize 300x300 -background transparent -gravity center -extent 300x300 "$PREVIEW_IMG"
 
-OPTION_OPEN="View"
-OPTION_EDIT="Edit"
-OPTION_SAVE="Save"
-OPTION_COPY="Copy image"
-OPTION_OCR="Copy text"
+OPTION_OPEN="  View"
+OPTION_EDIT="  Edit"
+OPTION_SAVE="  Save"
+OPTION_COPY="  Copy image"
+OPTION_OCR="  Copy text"
 
 # Launch Rofi and get the option
 CHOICE=$(echo -en "$OPTION_OPEN\n$OPTION_EDIT\n$OPTION_SAVE\n$OPTION_COPY\n$OPTION_OCR" | rofi -dmenu -i -theme-str "

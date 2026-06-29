@@ -12,16 +12,19 @@ get_pos() {
 }
 
 cleanup() {
+    hyprctl eval 'hl.config({ cursor = { invisible = false } })'
     # Restore cursor position
-    hyprctl dispatch movecursor $original_x $original_y
+    hyprctl dispatch "hl.dsp.cursor.move({ x = $original_x, y = $original_y })"
     exit
 }
+
+hyprctl eval 'hl.config({ cursor = { invisible = true } })'
 
 read original_x original_y < <(get_pos)
 trap cleanup SIGINT SIGTERM SIGQUIT
 
 while true; do
-   	hyprctl dispatch movecursor 800 500
+    hyprctl dispatch "hl.dsp.cursor.move({ x = 400, y = 400 })"
    	read x1 y1 < <(get_pos)
    	sleep "$INTERVAL"
    	read x2 y2 < <(get_pos)
