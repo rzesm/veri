@@ -8,19 +8,23 @@ desktop_entries_path="$HOME/.local/share/applications"
 name_lowercase=$(echo "$name" | tr '[:upper:]' '[:lower:]')
 
 if [[ -z "$name" || "$name" == */* || "$name" == *.* ]]; then
-    echo "Invalid name"
+    echo "Usage: make_zen_app <name> <url>"
     exit 1
 fi
 
 shopt -s nullglob
-profile_path=(${zen_path}/*.${name_lowercase})
+profile_path=(${zen_path}/*.app-${name_lowercase})
 shopt -u nullglob
 
 # If the web app's profile folder doesn't exist
 # then create a profile using Zen
 if [ ! -e "${profile_path[0]}" ]; then
     zen-browser -CreateProfile app-$name_lowercase
-    while [ ! -e ${zen_path}/*.app-${name_lowercase} ]; do
+    while :; do
+        shopt -s nullglob
+        profile_path=(${zen_path}/*.app-${name_lowercase})
+        shopt -u nullglob
+        [[ ${#profile_path[@]} -gt 0 ]] && break
         sleep 1
     done
 
@@ -30,6 +34,8 @@ if [ ! -e "${profile_path[0]}" ]; then
     ln -sf ${zen_path}/web-app-extensions ${profile_path[0]}/extensions
 
     echo "Created web app profile: ${profile_path[0]}"
+else
+    echo "Zen profile for $name already exists"
 fi
 
 # Make a desktop entry
@@ -42,3 +48,5 @@ Name=$name
 Icon=$name_lowercase
 EOF
 echo "Created a desktop entry: ${desktop_file}"
+
+echo "You can add a custom icon in ~/.local/share/icons/$name_lowercase"

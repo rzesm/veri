@@ -7,8 +7,8 @@ profiles_file="$zen_path/profiles.ini"
 
 name_lowercase=$(echo "$name" | tr '[:upper:]' '[:lower:]')
 
-if [[ "$name" =~ [^a-zA-Z0-9_-] ]]; then
-    echo "Invalid name"
+if [[ -z "$name" || "$name" =~ [^a-zA-Z0-9_-] ]]; then
+    echo "Usage: remove-zen-app <name>"
     exit 1
 fi
 
@@ -77,4 +77,4 @@ awk -v name="app-$name_lowercase" '
 mv -- "$tmp" "$profiles_file"
 trap - EXIT
 
-echo "Made a backup of $profiles_file and remove the web app profile"
+echo "Made a backup of $profiles_file and removed the web app profile"

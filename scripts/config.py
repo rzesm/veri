@@ -52,30 +52,31 @@ def parse_config():
     
 def generate_empty_config():
     FLAGS = dedent("""\
-        # Extra flags to apply during installation, separated by newlines
+        # Extra flags to apply during installation, each in a new line
         # Here's a list of available flags:
         # nozsh - skips changing the user's shell to zsh if applicable
         # nosyu - skips full system upgrade
         # noplugins - skips syncing Hyprland plugins
+        # nowebapps - skips the setup of system web apps
     """)
 
     FILES = dedent("""\
-        # A list of paths of files to skip in the installation process, separated by newlines
+        # A list of paths of files to skip in the installation process, each in a new line
         # Important: each path must be absolute, e.g. /home/user/.config/hypr/host.conf
         # Directories can also be included, just like regular files
     """)
 
     GSETTINGS = dedent("""\
-        # A list of gsettings to skip in the installation process, separated by newlines
+        # A list of gsettings to skip in the installation process, each in a new line
         # Each gsetting consists of a directory name and a setting name, separated by a space
     """)
 
     PACKAGES = dedent("""\
-        # A list of names of packages to skip in the installation process, separated by newlines
+        # A list of names of packages to skip in the installation process, each in a new line
     """)
 
     SERVICES = dedent("""\
-        # A list of names of services to skip in the installation process, separated by newlines
+        # A list of names of services to skip in the installation process, each in a new line
     """)
     
     sh("rm -rf ~/.config/veri")
