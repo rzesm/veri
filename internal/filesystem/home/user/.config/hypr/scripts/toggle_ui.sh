@@ -1,13 +1,26 @@
+#!/bin/bash
+
 if pgrep -x waybar >/dev/null; then 
     pkill waybar
-    # hyprctl keyword plugin:hyprbars:enabled false
-    hyprctl keyword general:gaps_out 2
-    hyprctl keyword general:gaps_in 1
-    hyprctl keyword decoration:rounding 8
+    hyprctl eval 'hl.config({
+        general = {
+            gaps_out = 2,
+            gaps_in = 1,
+        },
+        decoration = {
+            rounding = 8,
+        },
+    })'
 else
     waybar & disown
-    # hyprctl keyword plugin:hyprbars:enabled true
-    hyprctl keyword general:gaps_out 10
-    hyprctl keyword general:gaps_in 5
-    hyprctl keyword decoration:rounding 20
+    hyprctl eval 'hl.config({
+        general = {
+            gaps_out = 10,
+            gaps_in = 3,
+        },
+        decoration = {
+            rounding = 20,
+        },
+    })'
 fi
+
