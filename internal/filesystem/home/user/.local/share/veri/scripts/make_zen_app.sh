@@ -19,7 +19,7 @@ shopt -u nullglob
 # If the web app's profile folder doesn't exist
 # then create a profile using Zen
 if [ ! -e "${profile_path[0]}" ]; then
-    zen-browser -CreateProfile app-$name_lowercase
+    zen-browser --headless -CreateProfile app-$name_lowercase
     while :; do
         shopt -s nullglob
         profile_path=(${zen_path}/*.app-${name_lowercase})
