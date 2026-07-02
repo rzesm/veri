@@ -3,7 +3,7 @@ import os
 from scripts.profile.profile import Profile, generate_profile
 from scripts.shell import sh
 from scripts.runtime import ensure_runtime
-from scripts.config import parse_config, generate_empty_config
+from scripts.config import Config, parse_config, generate_empty_config
 from scripts.hardware.hardware import scan_hardware
 
 def ask_to_generate_config():
@@ -49,18 +49,8 @@ def print_changes(profile: Profile):
     print("\nFiles that will be modified:")
     sh(f"tree -a --prune {profile.filesystem_path}")
     print()
-
-def main():
-    ensure_runtime() or exit(1)
-
-    config = parse_config() or ask_to_generate_config()
-    hardware = scan_hardware()
-    profile = generate_profile(config, hardware)
-
-    print_changes(profile)
-    print("Proceed with update? [Y/n] ", end="")
-    if input().strip() not in ["y", "Y", ""]: exit(1)
     
+def make_changes(config: Config, profile: Profile):
     # update system
     if "nosyu" not in config.flags:
         sh("yay --noconfirm")
@@ -78,6 +68,9 @@ def main():
     # set gsettings
     for gsetting in profile.gsettings:
         sh(f"dbus-run-session gsettings set {" ".join(gsetting)}")
+        
+    # write dconf settings
+    sh("dconf write /io/github/bluemancz/hyprmods/config-path \"'hyprmod.lua'\"")
 
     # change shell
     if "nozsh" not in config.flags:
@@ -91,6 +84,19 @@ def main():
     sh(f"sudo rm -rf {profile.filesystem_path}")
     
     print("sync.py: synchronisation finished")
+
+def main():
+    ensure_runtime() or exit(1)
+
+    config = parse_config() or ask_to_generate_config()
+    hardware = scan_hardware()
+    profile = generate_profile(config, hardware)
+
+    print_changes(profile)
+    print("Proceed with update? [Y/n] ", end="")
+    if input().strip() not in ["y", "Y", ""]: exit(1)
+    
+    make_changes(config, profile)
     
 if __name__ == "__main__":
     main()

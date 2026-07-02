@@ -1,5 +1,12 @@
 -- CORE
 
+hl.monitor({
+    output = "",
+    mode = "preferred",
+    position = "auto",
+    scale = "auto",
+})
+
 hl.define_submap("empty", function() 
     hl.bind("SUPER", function() end)
 end)

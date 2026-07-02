@@ -5,4 +5,6 @@ require("look_and_feel")
 require("surfaces")
 require("binds")
 require("input")
-require("host")
+
+require("personal")
+require("hyprmod")
