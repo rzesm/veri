@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 import os
 import configparser
 from textwrap import dedent
@@ -7,11 +7,11 @@ from scripts.shell import sh
 
 @dataclass
 class Config:
-    ignored_files: list[str] = None
-    ignored_services: list[str] = None
-    ignored_packages: list[str] = None
-    ignored_gsettings: list[tuple[str, str]] = None
-    flags: list[str] = None
+    ignored_files: list[str] = field(default_factory=list)
+    ignored_services: list[str] = field(default_factory=list)
+    ignored_packages: list[str] = field(default_factory=list)
+    ignored_gsettings: list[tuple[str, str]] = field(default_factory=list) 
+    flags: list[str] = field(default_factory=list)  
     
 def parse_config():
     config_path = os.path.expanduser("~/.config/veri/installer.conf")
