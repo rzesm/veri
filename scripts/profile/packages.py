@@ -60,7 +60,7 @@ def generate_packages(config: Config, hardware: Hardware):
     version_lookup = dict(base_packages_versions)
     
     final_packages_versions = [
-        (package, version_lookup[package]) for package in final_packages
+        (package, version_lookup.get(package, None)) for package in final_packages
     ]
 
     return final_packages_versions
