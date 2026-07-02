@@ -81,11 +81,11 @@ def main():
 
     # change shell
     if "nozsh" not in config.flags:
-        sh("sudo chsh -s /usr/bin/zsh $username")
+        sh("sudo chsh -s /usr/bin/zsh $USER")
 
     # set up system web apps
     if "nowebapps" not in config.flags:
-        sh("internal/scripts/set_up_web_apps.sh")
+        sh("scripts/set_up_web_apps.sh")
         
     # clean up
     sh(f"sudo rm -rf {profile.filesystem_path}")
