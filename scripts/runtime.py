@@ -50,9 +50,9 @@ def ensure_repository(repository: str):
         return True
 
     # uncomment section
-    sh(f"sudo sed -i '/^\\[{repository}\\]/,/^Include/ s/^#//' /etc/pacman.conf")
+    sh(f"sudo sed -i '/^#\\[{repository}\\]/,/^#Include/ s/^#//' /etc/pacman.conf")
 
-    sh("sudo pacman -Syu")
+    sh("sudo pacman -Sy")
 
     # verify
     if sh(f"pacman-conf --repo-list | grep -q {repository}").returncode != 0:
