@@ -44,27 +44,11 @@ The installer is meant for a fresh Arch Linux installation. It is possible to in
 
 2. **User account**
 
-    A non-root user account must be set up to run the installer scripts:
-    
-    ```
-    useradd -m <username>
-    ```
-    
-    Don't forget to set a password:
+    A non-root user account must be set up to run the installer scripts.    
 
-    ```
-    passwd <username>
-    ```
-    
 3. **The installer itself**
 
-    Once internet connection and a user account are set up, make sure to switch to the user: 
-    
-    ```
-    su <username> && cd
-    ```
-
-    and then run:
+    Once internet connection and a user account are set up, make sure to switch to the user and then run:
 
     ```
     curl -L https://api.github.com/repos/rzesm/veri/tarball/main -o veri.tar.gz && tar -xzf veri.tar.gz
