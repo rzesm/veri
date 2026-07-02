@@ -95,6 +95,6 @@ def ensure_runtime():
         ensure_sudo() and \
         ensure_repository("extra") and \
         ensure_repository("multilib") and \
-        ensure_packages(["rsync", "tree", "git"]) and \
+        ensure_packages(["rsync", "tree", "git", "base-devel"]) and \
         ensure_aur() and \
         ensure_yay()
