@@ -63,7 +63,7 @@ def generate_empty_config():
 
         [ignored_files]
         # A list of absolute paths of files or directories to skip.
-        # Example: /home/user/.config/hypr/host.lua
+        # Example: /home/rzes/.config/hypr/personal.lua
 
         [ignored_services]
         # A list of names of systemd services to skip.
