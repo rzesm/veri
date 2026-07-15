@@ -70,7 +70,7 @@ def make_changes(config: Config, profile: Profile):
         sh(f"dbus-run-session gsettings set {" ".join(gsetting)}")
         
     # write dconf settings
-    sh("dconf write /io/github/bluemancz/hyprmods/config-path \"'hyprmod.lua'\"")
+    sh("dbus-run-session dconf write /io/github/bluemancz/hyprmods/config-path \"'hyprmod.lua'\"")
 
     # change shell
     if "nozsh" not in config.flags:
