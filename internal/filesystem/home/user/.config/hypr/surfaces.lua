@@ -7,28 +7,22 @@ hl.layer_rule({
 
 hl.layer_rule({
     match = { namespace = "waybar" },
-    animation = "fade",
-    blur = true,
-    ignore_alpha = 0.1,
+    animation = "fade", blur = true, ignore_alpha = 0.1,
 })
 
 hl.layer_rule({
     match = { namespace = "rofi" },
-    blur = true,
-    ignore_alpha = 0,
-    dim_around = true,
+    blur = true, ignore_alpha = 0, dim_around = true,
 })
 
 hl.layer_rule({
     match = { namespace = "hyprexpose" },
-    animation = "fade",
-    blur = true,
+    animation = "slide bottom", blur = true,
 })
 
 hl.layer_rule({
     match = { namespace = "notifications" },
-    blur = true,
-    ignore_alpha = 0,
+    blur = true, ignore_alpha = 0,
 })
 
 hl.layer_rule({
