@@ -32,8 +32,8 @@ hl.bind("SUPER + E", hl.dsp.exec_cmd("nautilus -w"))
 hl.bind("SUPER + Space", hl.dsp.exec_cmd("pkill --exact rofi || rofi -show drun"))
 hl.bind("SUPER + I", hl.dsp.exec_cmd("kitty --app-id=neovim nvim"))
 hl.bind("SUPER + B", hl.dsp.exec_cmd("zen-browser"))
-hl.bind("SUPER + V", hl.dsp.exec_cmd("pkill -x clipse-gui; clipse-gui"))
-hl.bind("SUPER + Period", hl.dsp.exec_cmd("pkill unicode_input; kitty --title=\"Unicode picker\" --class=unicode-input ~/.config/hypr/scripts/unicode_input.sh"))
+hl.bind("SUPER + V", hl.dsp.exec_cmd("~/.config/hypr/scripts/open_clipse.sh"))
+hl.bind("SUPER + Period", hl.dsp.exec_cmd("~/.config/hypr/scripts/open_unicode.sh"))
 hl.bind("SUPER + T", hl.dsp.exec_cmd("pkill -x btop || kitty --app-id=btop btop"))
 
 -- Windows
@@ -135,14 +135,6 @@ hl.gesture({
     fingers = 3,
     direction = "vertical",
     action = "fullscreen",
-})
-
-hl.gesture({
-    fingers = 4,
-    direction = "vertical",
-    action = function()
-        hl.exec_cmd("~/.config/hypr/scripts/toggle_overview.sh")
-    end
 })
 
 hl.gesture({
