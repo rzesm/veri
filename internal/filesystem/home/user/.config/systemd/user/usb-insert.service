@@ -1,0 +1,6 @@
+[Unit]
+Description=Play sound on USB insertion
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/pw-play %h/.local/share/sounds/usb_insert.ogg

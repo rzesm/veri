@@ -17,6 +17,11 @@ command = "start-hyprland > /dev/null 2>&1"
 user = "{USERNAME}"
 """
 
+USB_SOUNDS = f"""\
+ACTION=="add", SUBSYSTEM=="usb", KERNEL=="*:1.0", RUN+="/usr/bin/systemctl --machine={USERNAME}@.host --user start usb-insert"
+ACTION=="remove", SUBSYSTEM=="usb", KERNEL=="*:1.0", RUN+="/usr/bin/systemctl --machine={USERNAME}@.host --user start usb-remove"
+"""
+
 def remove_redundant():
     filesystem_path = Path(FILESYSTEM_PATH)
     root = Path("/")
@@ -43,11 +48,13 @@ def generate_filesystem(config: Config):
             raise RuntimeError(f"{FILESYSTEM_PATH}/home/{USERNAME} exists")
         sh(f"mv -f {FILESYSTEM_PATH}/home/user {FILESYSTEM_PATH}/home/{USERNAME}")
 
-    # generate specific files
+    # generate files
     
     sh(f"mkdir -p {FILESYSTEM_PATH}/etc/greetd")
     open(f"{FILESYSTEM_PATH}/etc/greetd/config.toml", "w").write(GREETD)
 
+    sh(f"mkdir -p {FILESYSTEM_PATH}/etc/udev/rules.d")
+    open(f"{FILESYSTEM_PATH}/etc/udev/rules.d/99-usb-sounds.rules", "w").write(USB_SOUNDS)
     
     # remove ignored files
     for file in config.ignored_files:
