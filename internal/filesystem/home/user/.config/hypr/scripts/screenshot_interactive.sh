@@ -19,9 +19,10 @@ OPTION_EDIT="  Edit"
 OPTION_SAVE="  Save"
 OPTION_COPY="  Copy image"
 OPTION_OCR="  Copy text"
+OPTION_SEARCH="  Search with Google"
 
 # Launch Rofi and get the option
-CHOICE=$(echo -en "$OPTION_OPEN\n$OPTION_EDIT\n$OPTION_SAVE\n$OPTION_COPY\n$OPTION_OCR" | rofi -dmenu -i -theme-str "
+CHOICE=$(echo -en "$OPTION_OPEN\n$OPTION_EDIT\n$OPTION_SAVE\n$OPTION_COPY\n$OPTION_OCR\n$OPTION_SEARCH" | rofi -dmenu -i -theme-str "
 	window {
 		width: 320px;
 	}
@@ -77,6 +78,16 @@ case "$CHOICE" in
         else
             wl-copy $TEXT
             notify-send "Text copied" "$TEXT"
+        fi
+        ;;
+    *"$OPTION_SEARCH"*)
+        RESPONSE=$(curl -s -H "Authorization: Client-ID 546c25a59c58ad7" -F "image=@$TEMP_IMG" https://api.imgur.com/3/upload)
+        UPLOAD_URL=$(echo "$RESPONSE" | jq -r '.data.link')
+
+        if [ "$UPLOAD_URL" != "null" ] && [ -n "$UPLOAD_URL" ]; then
+            zen-browser --new-window "https://lens.google.com/uploadbyurl?url=$UPLOAD_URL"
+        else
+            notify-send "Failed to upload image"
         fi
         ;;
 esac

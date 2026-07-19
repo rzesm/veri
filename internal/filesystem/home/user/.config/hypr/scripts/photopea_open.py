@@ -74,7 +74,6 @@ def main():
         
         # Keep server open until image is fetched, or kill after a 25s timeout
         file_fetched.wait(timeout=25)
-        time.sleep(1)  # Brief buffer to ensure the data transfer completes
         httpd.shutdown()
 
 if __name__ == "__main__":
