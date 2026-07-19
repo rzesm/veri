@@ -12,7 +12,7 @@ Veri is a minimal but polished and visually pleasing setup on top of Arch Linux 
 - Shell setup powered by Zsh
 - Multiple touchpad gestures, including volume and screen brightness control
 - Desktop level zoom
-- Screenshot tool with text recognition
+- Screenshot tool with text recognition and Google Lens features
 - Instant web app setup based on Zen browser
 - Control over charging for laptop batteries
 - Clipboard history with images
