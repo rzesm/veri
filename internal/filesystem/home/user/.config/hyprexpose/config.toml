@@ -47,7 +47,7 @@ background = "#00000000"
 card = "#00000055"
 
 # Border drawn around the currently selected card.
-selection = "#ffffff33"
+selection = "#ffffff20"
 
 # Workspace number / name label text.
 label = "#00000000"
