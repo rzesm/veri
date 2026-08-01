@@ -9,11 +9,11 @@ hl.bind("SUPER + PRINT", hl.dsp.exec_cmd("~/.config/hypr/scripts/screenshot_scre
 hl.bind("SUPER + S", hl.dsp.exec_cmd("~/.config/hypr/scripts/screenshot_region.sh"))
 hl.bind("SUPER + SHIFT + S", hl.dsp.exec_cmd("~/.config/hypr/scripts/screenshot_interactive.sh"))
 
-hl.bind("SUPER + mouse_down", function()
+hl.bind("SUPER + mouse_up", function()
     local current = hl.get_config("cursor.zoom_factor") or 1.0
     hl.config({ cursor = { zoom_factor = current * 1.1 } })
 end)
-hl.bind("SUPER + mouse_up", function()
+hl.bind("SUPER + mouse_down", function()
     local current = hl.get_config("cursor.zoom_factor") or 1.0
     hl.config({ cursor = { zoom_factor = math.max(1.0, current / 1.1) } })
 end)

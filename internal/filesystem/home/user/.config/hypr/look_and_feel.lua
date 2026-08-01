@@ -94,6 +94,7 @@ hl.config({
             enabled = true,
             size = 8,
             passes = 3,
+            noise = 0.02,
         },
     },
     dwindle = {
@@ -102,6 +103,7 @@ hl.config({
     misc = {
         force_default_wallpaper = 0,
         disable_hyprland_logo = true,
+        disable_splash_rendering = true,
     },
     gestures = {
         workspace_swipe_cancel_ratio = 0.2,

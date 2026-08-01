@@ -42,7 +42,6 @@ hl.layer_rule({
 
 
 hl.window_rule({
-    name = "suppress-maximize-events",
     match = {
         class = ".*",
     },
@@ -50,7 +49,6 @@ hl.window_rule({
 })
 
 hl.window_rule({
-    name = "fix-xwayland-drags",
     match = {
         class = "^$",
         title = "^$",
