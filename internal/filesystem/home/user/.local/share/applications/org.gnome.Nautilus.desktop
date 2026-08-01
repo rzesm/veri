@@ -1,5 +1,0 @@
-[Desktop Entry]
-Name=Files
-Icon=file-explorer
-Type=Application
-Exec=nautilus -w
