@@ -1,5 +1,6 @@
 #!/bin/bash
 mkdir -p ~/.local/share/veri
 cd ~/.local/share/veri || exit 0
+rm -rf veri
 git clone https://github.com/rzesm/veri
 veri/sync
