@@ -2,4 +2,4 @@
 Name=Micro
 Icon=micro
 Type=Application
-Exec=foot --app-id=micro micro
+Exec=kitty --app-id=micro micro %F
