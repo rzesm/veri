@@ -3,5 +3,5 @@
 sudo -v
 
 hyprpm update
-hyprpm add https://github.com/sandwichfarm/hyprexpo
+yes | hyprpm add https://github.com/sandwichfarm/hyprexpo
 hyprpm enable hyprexpo
