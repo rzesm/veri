@@ -71,8 +71,8 @@ hl.config({
         gaps_out = 10,
         border_size = 1,
         col = {
-            active_border = { colors = { "rgba(ffffff38)", "rgba(ffffff1a)" }, angle = 90 },
-            inactive_border = "rgba(ffffff1a)",
+            active_border = { colors = { "rgba(ffffff55)", "rgba(ffffff22)" }, angle = 90 },
+            inactive_border = "rgba(ffffff22)",
         },
         resize_on_border = true,
         allow_tearing = true,
@@ -86,7 +86,7 @@ hl.config({
         shadow = {
             enabled = true,
             range = 10,
-            render_power = 1,
+            render_power = 100,
             color = "rgba(00000077)",
             color_inactive = "rgba(00000000)",
         },

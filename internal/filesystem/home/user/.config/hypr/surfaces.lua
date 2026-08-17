@@ -1,4 +1,4 @@
--- WINDOWS AND LAYERS
+-- SURFACES
 
 hl.layer_rule({
     match = { namespace = "wallpaper" },
@@ -7,7 +7,7 @@ hl.layer_rule({
 
 hl.layer_rule({
     match = { namespace = "waybar" },
-    animation = "fade", blur = true, ignore_alpha = 0.1,
+    animation = "fade"
 })
 
 hl.layer_rule({

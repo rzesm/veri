@@ -1,4 +1,4 @@
--- INPUT SETTINGS
+-- INPUT
 
 hl.config({
     input = {
