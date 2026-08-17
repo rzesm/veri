@@ -70,7 +70,8 @@ def make_changes(config: Config, profile: Profile):
         sh(f"dbus-run-session gsettings set {" ".join(gsetting)}")
         
     # write dconf settings
-    sh("dbus-run-session dconf write /io/github/bluemancz/hyprmods/config-path \"'hyprmod.lua'\"")
+    if "nodconf" not in config.flags:
+        sh("dbus-run-session dconf write /io/github/bluemancz/hyprmods/config-path \"'hyprmod.lua'\"")
 
     # change shell
     if "nozsh" not in config.flags:
@@ -79,6 +80,10 @@ def make_changes(config: Config, profile: Profile):
     # set up system web apps
     if "nowebapps" not in config.flags:
         sh("scripts/set_up_web_apps.sh")
+        
+    # set up hyprland plugins
+    if "noplugins" not in config.flags:
+        sh("scripts/set_up_plugins.sh")
         
     # clean up
     sh(f"sudo rm -rf {profile.filesystem_path}")

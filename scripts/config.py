@@ -59,7 +59,9 @@ def generate_empty_config():
         # Uncomment a flag to enable it:
         # nozsh
         # nosyu
+        # nodconf
         # nowebapps
+        # noplugins
 
         [ignored_files]
         # A list of absolute paths of files or directories to skip.

@@ -1,9 +1,8 @@
--- KEYBINDINGS AND GESTURES
+-- BINDS
 
 -- General
 
-hl.bind("SUPER + U", hl.dsp.exec_cmd("~/.config/hypr/scripts/toggle_ui.sh"))
-hl.bind("SUPER + Tab", hl.dsp.exec_cmd("~/.config/hypr/scripts/toggle_overview.sh"))
+hl.bind("SUPER + W", hl.dsp.exec_cmd("~/.config/hypr/scripts/toggle_ui.sh"))
 
 hl.bind("SUPER + PRINT", hl.dsp.exec_cmd("~/.config/hypr/scripts/screenshot_screen.sh"))
 hl.bind("SUPER + S", hl.dsp.exec_cmd("~/.config/hypr/scripts/screenshot_region.sh"))
@@ -133,14 +132,6 @@ hl.gesture({
 
 hl.gesture({
     fingers = 3,
-    direction = "vertical",
+    direction = "up",
     action = "fullscreen",
-})
-
-hl.gesture({
-    fingers = 4,
-    direction = "pinch",
-    action = function()
-        hl.exec_cmd("pkill rofi || rofi -show drun")
-    end
 })
