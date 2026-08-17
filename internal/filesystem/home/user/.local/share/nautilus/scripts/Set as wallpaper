@@ -7,4 +7,4 @@ for item in "$@"; do
     paths+=("$(realpath "$item")")
 done
 
-set-wallpaper ../../../../../${paths[0]}
+set-wallpaper ../../../../../../../../../../../../../${paths[0]}
