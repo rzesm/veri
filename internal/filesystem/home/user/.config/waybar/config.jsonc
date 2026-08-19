@@ -92,7 +92,7 @@
 
 "custom/power": {
     "format": "\uf011",
-    "on-click": "pkill -f \"$HOME/.config/waybar/power.sh\" || (pkill adwifi; pkill adw-bluetooth; pkill pwvucontrol; \"$HOME/.config/waybar/power.sh\")",
+    "on-click": "pkill -9 -f '^yad --name=yad.power' || (pkill adwifi; pkill adw-bluetooth; pkill pwvucontrol; \"$HOME/.config/waybar/power.sh\")",
     "tooltip": false
 },
 

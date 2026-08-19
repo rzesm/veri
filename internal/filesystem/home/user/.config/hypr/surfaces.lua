@@ -157,8 +157,8 @@ hl.window_rule({
     animation = "slide",
     float = true,
     pin = true,
-    size = "300 50",
-    move = "monitor_w*0.5-150 40",
+    size = "280 50",
+    move = "monitor_w*0.5-140 40",
 })
 
 -- Charge limit menu
