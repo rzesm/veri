@@ -47,4 +47,3 @@ alias yay="yay --color=auto"
 alias diff="diff --color=auto"
 
 alias nv="nvim"
-alias kys="poweroff"
