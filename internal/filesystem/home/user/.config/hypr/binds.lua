@@ -33,7 +33,8 @@ hl.bind("SUPER + I", hl.dsp.exec_cmd("kitty --app-id=neovim nvim"))
 hl.bind("SUPER + B", hl.dsp.exec_cmd("zen-browser"))
 hl.bind("SUPER + V", hl.dsp.exec_cmd("~/.config/hypr/scripts/open_clipse.sh"))
 hl.bind("SUPER + Period", hl.dsp.exec_cmd("~/.config/hypr/scripts/open_unicode.sh"))
-hl.bind("SUPER + T", hl.dsp.exec_cmd("pkill -x btop || kitty --app-id=btop btop"))
+hl.bind("SUPER + T", hl.dsp.exec_cmd("pkill -x resources || resources"))
+hl.bind("SUPER + SHIFT + T", hl.dsp.exec_cmd("pkill -x btop || kitty --class=btop btop"))
 
 -- Windows
 
