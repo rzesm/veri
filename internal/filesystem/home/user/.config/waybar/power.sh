@@ -11,6 +11,8 @@ yad --name="yad.power" \
 
 choice=$?
 
+sleep 0.05
+
 case $choice in
     0) systemctl poweroff ;;
     1) systemctl reboot ;;

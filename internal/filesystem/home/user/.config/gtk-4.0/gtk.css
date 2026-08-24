@@ -19,10 +19,22 @@ statuspage {
     border-color: rgba(0, 0, 0, 0);
 }
 
+#yad-calendar-widget:selected {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
 toolbarview {
     background-color: rgba(0, 0, 0, 0);
 }
 
 .list {
     background-color: rgba(0, 0, 0, 0);
+}
+
+listview {
+   	background-color: rgba(0, 0, 0, 0);
+}
+
+columnview {
+	   background-color: rgba(0, 0, 0, 0);
 }
