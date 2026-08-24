@@ -65,7 +65,7 @@ def main():
         # Launch Zen
         cmd = [
             "zen-browser",
-            "-P", "app-photopea",
+            "-P", "web-app-photopea",
             "--name=photopea",
             "--new-window",
             photopea_url

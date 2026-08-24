@@ -1,0 +1,5 @@
+[Desktop Entry]
+Type=Application
+Exec=zen-browser -P web-app-photopea --name=photopea --new-window https://photopea.com
+Name=Photopea
+Icon=photopea

@@ -22,6 +22,15 @@ ACTION=="add", SUBSYSTEM=="usb", KERNEL=="*:1.0", RUN+="/usr/bin/systemctl --mac
 ACTION=="remove", SUBSYSTEM=="usb", KERNEL=="*:1.0", RUN+="/usr/bin/systemctl --machine={USERNAME}@.host --user start usb-remove"
 """
 
+PHOTOPEA_OPEN = f"""\
+[Desktop Entry]
+Name=Photopea
+Icon=photopea
+Type=Application
+NoDisplay=true
+Exec=/home/{USERNAME}/.config/hypr/scripts/photopea_open.sh %F
+"""
+
 def remove_redundant():
     filesystem_path = Path(FILESYSTEM_PATH)
     root = Path("/")
