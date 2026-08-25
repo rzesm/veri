@@ -5,7 +5,7 @@ from scripts.config import Config
 from scripts.hardware.hardware import Hardware
 from scripts.shell import sh
 
-def parse_packages_versions(file: TextIO) -> list[str]:
+def parse_packages_versions(file: TextIO) -> list:
     values = []
 
     for line in file:
