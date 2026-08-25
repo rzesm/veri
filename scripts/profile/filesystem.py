@@ -36,14 +36,17 @@ def remove_redundant():
     root = Path("/")
 
     for internal_path in filesystem_path.rglob("*"):
+        device_path = root / internal_path.relative_to(filesystem_path)
+
+        if internal_path.is_symlink() and device_path.is_symlink():
+            if os.readlink(internal_path) == os.readlink(device_path):
+                os.remove(internal_path)
+
         if not internal_path.is_file():
             continue
 
-        device_path = root / internal_path.relative_to(filesystem_path)
-
         if device_path.is_file() and filecmp.cmp(internal_path, device_path, shallow=False):
             os.remove(internal_path)
-    
 
 def generate_filesystem(config: Config):
     sh(f"sudo rm -rf {FILESYSTEM_PATH}")
@@ -64,6 +67,12 @@ def generate_filesystem(config: Config):
 
     sh(f"mkdir -p {FILESYSTEM_PATH}/etc/udev/rules.d")
     open(f"{FILESYSTEM_PATH}/etc/udev/rules.d/99-usb-sounds.rules", "w").write(USB_SOUNDS)
+
+    zephyr = "https://github.com/Rudraksh88/zephyr-kvantum.git"
+    sh(f"mkdir -p {FILESYSTEM_PATH}/home/{USERNAME}/.config/Kvantum")
+    if sh(f"git clone {zephyr} {FILESYSTEM_PATH}/home/{USERNAME}/.config/Kvantum/Zephyr").returncode != 0:
+        raise RuntimeError(f"failed to clone {zephyr}")
+    sh(f"rm -rf {FILESYSTEM_PATH}/home/{USERNAME}/.config/Kvantum/Zephyr/.git")
     
     # remove ignored files
     for file in config.ignored_files:

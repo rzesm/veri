@@ -1,5 +1,5 @@
 export PATH="$HOME/bin:$PATH"
-export QT_QPA_PLATFORMTHEME=gtk3
+export QT_QPA_PLATFORMTHEME=qt5ct
 export HYPRSHOT_DIR="$HOME/captures"
 export XCURSOR_THEME=Adwaita
 export XCURSOR_SIZE=24
