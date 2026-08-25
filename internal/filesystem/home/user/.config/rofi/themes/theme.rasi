@@ -1,5 +1,5 @@
 configuration {
-    font: "Adwaita Sans semibold 14";
+    font: "system-ui semibold 14";
     show-icons: true;
     display-drun: "";
     display-window: "";
@@ -29,8 +29,8 @@ mainbox {
     children: [inputbar, message, listview];
     background-color: rgba(0, 0, 0, 0.2);
     border-radius: 35;
-    border: 2 0 2 0;
-    border-color: rgba(255, 255, 255, 0.1);
+    border: 1;
+    border-color: rgba(255, 255, 255, 0.2);
     padding: 10;
     spacing: 0;
 }
@@ -68,7 +68,7 @@ listview {
 element {
     background-color: rgba(0, 0, 0, 0);
     border-radius: 30px;
-    border: 2 0 2 0;
+    border: 1;
     border-color: rgba(0, 0, 0, 0);
     margin: 4 4 4 4;
     padding: 2 0 2 0;
@@ -76,7 +76,7 @@ element {
 
 element selected {
     background-color: rgba(255, 255, 255, 0.05);
-    border-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
     text-color: rgba(255, 255, 255, 1);
 }
 
@@ -100,6 +100,6 @@ error-message {
     text-color: rgba(255, 255, 255, 1);
     padding: 20;
     border-radius: 30;
-    border: 2px;
-    border-color: rgba(255, 255, 255, 0.02);
+    border: 1;
+    border-color: rgba(255, 255, 255, 0.2);
 }

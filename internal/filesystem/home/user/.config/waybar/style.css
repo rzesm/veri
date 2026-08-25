@@ -6,8 +6,8 @@
 }
 
 * {
-    font-family: "System-ui";
-    font-weight: 700;
+    font-family: "system-ui";
+    font-weight: 400;
     font-size: 14px;
     text-shadow: 0 0 2px rgba(0, 0, 0, 0.7);
 }
@@ -53,7 +53,6 @@
 #battery {
     margin-left: 10px;
     transition-duration: 100ms;
-    font-weight: 400;
     font-size: 16px;
 }
 #battery:hover { color: rgba(255, 255, 255, 0.7); }
@@ -68,32 +67,28 @@
 #taskbar button {
     min-height: 0px;
     margin: 0px -1px;
-    padding: 0px 3px;
+    padding: 0px 4px;
     transition-duration: 200ms;
     background: rgba(0, 0, 0, 0);
 }
 #taskbar button.active, 
 #taskbar button:hover {
+    padding: 0px 3px;
     margin: 0px 3px;
     border: 1px solid rgba(255, 255, 255, 0.5);
 }
 #taskbar > button:first-child {
     margin-left: 0px;
-    padding-left: 3px;
 }
 #taskbar > button:last-child {
     margin-right: 0px;
-    padding-right: 3px;
 }
 
 #workspaces {
     margin: 0px 5px;
     background: rgba(0, 0, 0, 0);
     border-radius: 99px;
-    border-top: 1.5px solid rgba(255, 255, 255, 0.2);
-    border-bottom: 1.5px solid rgba(255, 255, 255, 0.1);
-    border-left: none;
-    border-right: none;
+    border: 1px solid rgba(255, 255, 255, 0.2);
     box-shadow: inset 0 0 0 15px rgba(0, 0, 0, 0.7);
 }
 #workspaces button {
@@ -110,8 +105,7 @@
 }
 
 #center-icons {
-    border-top: 1.5px solid rgba(255, 255, 255, 0.2);
-    border-bottom: 1.5px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     box-shadow: inset 0 0 0 15px rgba(0, 0, 0, 0.7);
     border-radius: 99px;
     margin-left: 5px;
@@ -140,9 +134,32 @@
 
 #tray {
     margin-left: 10px;
-    padding: 0px 2px;
     border-radius: 99px;
     background: rgba(0, 0, 0, 0.2);
+}
+#tray > widget > image {
+    min-height: 0px;
+    margin: 0px -1px;
+    padding: 0px 4px;
+    transition-duration: 200ms;
+    background: rgba(0, 0, 0, 0);
+    border-radius: 99px;
+}
+#tray > widget:hover > image {
+    padding: 0px 3px;
+    margin: 0px 3px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.08);
+}
+#tray > widget:first-child > image {
+    margin-left: 0px;
+}
+#tray > widget:last-child > image {
+    margin-right: 0px;
+}
+#tray menu {
+    background-color: rgba(0, 0, 0, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 /* Right */
@@ -150,7 +167,6 @@
 #clock {
     margin-right: 15px;
     padding-left: 10px;
-    font-weight: 400;
     font-size: 16px;
     transition-duration: 100ms;
 }
