@@ -20,7 +20,9 @@ statuspage {
 }
 
 #yad-calendar-widget:selected {
-    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 99px;
+    color: rgba(0, 0, 0, 1);
+    background-color: rgba(255, 255, 255, 1);
 }
 
 toolbarview {
