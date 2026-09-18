@@ -73,6 +73,7 @@ def generate_filesystem(config: Config):
     if sh(f"git clone {zephyr} {FILESYSTEM_PATH}/home/{USERNAME}/.config/Kvantum/Zephyr").returncode != 0:
         raise RuntimeError(f"failed to clone {zephyr}")
     sh(f"rm -rf {FILESYSTEM_PATH}/home/{USERNAME}/.config/Kvantum/Zephyr/.git")
+    sh(f"rm -rf {FILESYSTEM_PATH}/home/{USERNAME}/.config/Kvantum/Zephyr/images")
     
     # remove ignored files
     for file in config.ignored_files:
