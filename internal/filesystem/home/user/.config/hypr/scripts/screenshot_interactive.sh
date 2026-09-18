@@ -6,13 +6,13 @@ rm "$TEMP_IMG"
 mkdir -p "$SAVE_DIR"
 
 # Take the screenshot and check for output
-wayfreeze & PID=$!; sleep .1; grim -g "$(slurp -b 000000b3 -c ffffff20)" $TEMP_IMG; kill $PID
+wayfreeze & PID=$!; sleep .1; grim -g "$(slurp -b 000000b3 -c ffffff55 -w 1)" $TEMP_IMG; kill $PID
 if [ ! -f "$TEMP_IMG" ]; then
     exit 0
 fi
 
 PREVIEW_IMG="/tmp/ssm_padded.png"
-magick "$TEMP_IMG" -resize 300x300 -background transparent -gravity center -extent 300x300 "$PREVIEW_IMG"
+magick "$TEMP_IMG" -resize 300x302 -background transparent -gravity center -extent 300x302 "$PREVIEW_IMG"
 
 OPTION_OPEN="  View"
 OPTION_EDIT="  Edit"
@@ -28,10 +28,10 @@ CHOICE=$(echo -en "$OPTION_OPEN\n$OPTION_EDIT\n$OPTION_SAVE\n$OPTION_COPY\n$OPTI
 	}
 	
     mainbox {
-        children: [preview /* instead of inputbar */, listview];
+        children: [preview, listview];
     }
 
-    preview /* instead of inputbar */ {
+    preview {
         background-image: url(\"$PREVIEW_IMG\", both);
         background-color: rgba(0, 0, 0, 0.6);
         padding: 140px;

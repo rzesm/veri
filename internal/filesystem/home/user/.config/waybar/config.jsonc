@@ -35,10 +35,9 @@
 },
 
 "battery": {
-    "format": "{icon} {capacity}%",
+    "format": "\uf1e6 {icon} {capacity}%",
     "format-charging": "\uf0e7 {icon} {capacity}%",
-    "format-not-charging": "\uf1e6 {icon} {capacity}%",
-    "format-alt": "{icon} {capacity}%",
+    "format-discharging": "{icon} {capacity}%",
     "tooltip": false,
     "format-icons": ["\uf244", "\uf243", "\uf242", "\uf241", "\uf240"],
     "on-click": "pkill -f $HOME/.config/waybar/charge-limit.sh || $HOME/.config/waybar/charge-limit.sh"
@@ -141,7 +140,7 @@
 // Right
 
 "clock": {
-    "format": "{:%a · %d %b · %H : %M}",
+    "format": "{:%a %d %b · %H : %M}",
     "tooltip": false,
     "on-click": "pkill -f '^yad --name=yad.calendar' || yad --name=yad.calendar --calendar --no-buttons"
 }

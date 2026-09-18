@@ -14,14 +14,19 @@ trap cleanup SIGINT SIGTERM
 old_charge_limit=$(cat /var/charge-limit)
 
 yad --name="yad.charge" \
-    --text=" Limit battery charge" \
+    --text="<b> Limit battery charge</b>" \
     --scale \
     --min-value=50 \
     --max-value=100 \
-    --step=1 \
+    --step=5 \
+    --enforce-step \
     --value=$old_charge_limit \
     --button=OK:0 \
     --button=Cancel:1 \
+    --mark=50:50 \
+    --mark=100:100 \
+    --buttons-layout=center \
+    --text-align=center \
     >"$yad_buffer" 2>/dev/null &
 
 yad_pid=$!

@@ -9,7 +9,7 @@ if pkill wf-recorder; then
 fi
 
 # get geometry or exit
-if ! geometry=$(slurp -b 000000b3 -c ff0000a0); then
+if ! geometry=$(slurp -b 000000b3 -c ff0000a0 -w 1); then
     notify-send "Recording cancelled"
     exit 0
 fi
