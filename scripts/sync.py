@@ -91,7 +91,7 @@ def make_changes(config: Config, profile: Profile):
     print("sync.py: synchronisation finished")
 
 def main():
-    ensure_runtime() or exit(1)
+    if not ensure_runtime(): exit(1)
 
     config = parse_config() or ask_to_generate_config()
     hardware = scan_hardware()
