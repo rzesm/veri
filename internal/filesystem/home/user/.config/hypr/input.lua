@@ -46,5 +46,5 @@ hl.window_rule({
 
 hl.window_rule({
     match = { class = "(com.saivert.pwvucontrol)" },
-    scroll_touchpad = 0.1,
+    scroll_touchpad = 0.01,
 })
