@@ -41,9 +41,9 @@ hl.animation({
     bezier = "ease_out",
 })
 hl.animation({
-    leaf = "fadeLayersOut",
+    leaf = "fadeLayers",
     enabled = true,
-    speed = 3,
+    speed = 5,
     bezier = "ease_out",
 })
 hl.animation({

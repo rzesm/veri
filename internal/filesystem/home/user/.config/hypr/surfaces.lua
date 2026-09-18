@@ -7,17 +7,12 @@ hl.layer_rule({
 
 hl.layer_rule({
     match = { namespace = "waybar" },
-    animation = "fade"
+    animation = "slide"
 })
 
 hl.layer_rule({
     match = { namespace = "rofi" },
     blur = true, ignore_alpha = 0, dim_around = true,
-})
-
-hl.layer_rule({
-    match = { namespace = "hyprexpose" },
-    animation = "slide bottom", blur = true,
 })
 
 hl.layer_rule({
@@ -167,7 +162,7 @@ hl.window_rule({
     animation = "slide",
     float = true,
     pin = true,
-    size = "250 129",
+    size = "250 150",
     move = "5 40",
 })
 
