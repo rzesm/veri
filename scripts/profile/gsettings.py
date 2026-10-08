@@ -13,7 +13,7 @@ def parse_values(file: TextIO) -> list[str]:
 
     return values 
 
-def remove_redundant(gsettings: list[(str, str, str)]):
+def remove_redundant(gsettings: list[tuple]):
     output = []
 
     for gsetting in gsettings:

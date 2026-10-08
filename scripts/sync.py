@@ -19,7 +19,8 @@ def get_available_package_version(name):
         f"LC_ALL=C yay -Si {name} | sed -n 's/^Version\\s*:\\s*//p'",
         capture=True).stdout.strip()
 
-def print_changes(profile: Profile):
+def print_changes(config: Config, profile: Profile):
+    # packages
     if profile.packages_versions:
         version_mismatches = 0
         print("\nPackages that will be installed:")
@@ -37,18 +38,33 @@ def print_changes(profile: Profile):
                 "Downgrading or modifying configuration files may be required."
             )
 
+    # services
     if profile.services:
         print("\nServices that will be enabled:")
         print(", ".join(profile.services))
 
+    # gsettings
     if profile.gsettings:
         print("\nGsettings that will be set:")
         strings = [' '.join(gsetting) for gsetting in profile.gsettings]
         print("\n".join(strings))
 
+    # files
     print("\nFiles that will be modified:")
     sh(f"tree -a --prune {profile.filesystem_path}")
-    print()
+
+    # config flags
+    print("\nFurthermore:")
+    if "nosyu" not in config.flags:
+        print("    Full system update will run.")
+    if "nodconf" not in config.flags:
+        print("    Some dconf settings will be overriden.")
+    if "nozsh" not in config.flags:
+        print("    Shell will be set to Zsh.")
+    if "nowebapps" not in config.flags:
+        print("    Zen Browser web apps will be configured.")
+    if "noplugins" not in config.flags:
+        print("    Hyprland plugins will be configured.")
     
 def make_changes(config: Config, profile: Profile):
     # update system
@@ -97,8 +113,8 @@ def main():
     hardware = scan_hardware()
     profile = generate_profile(config, hardware)
 
-    print_changes(profile)
-    print("Proceed with update? [Y/n] ", end="")
+    print_changes(config, profile)
+    print("\nProceed with update? [Y/n] ", end="")
     if input().strip() not in ["y", "Y", ""]: exit(1)
     
     make_changes(config, profile)

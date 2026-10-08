@@ -10,7 +10,7 @@ class Config:
     ignored_files: list[str] = field(default_factory=list)
     ignored_services: list[str] = field(default_factory=list)
     ignored_packages: list[str] = field(default_factory=list)
-    ignored_gsettings: list[tuple[str, str]] = field(default_factory=list) 
+    ignored_gsettings: list[tuple] = field(default_factory=list) 
     flags: list[str] = field(default_factory=list)  
     
 def parse_config():
@@ -25,7 +25,7 @@ def parse_config():
         parser = configparser.ConfigParser(allow_no_value=True)
         
         # enable case sensitivity
-        parser.optionxform = str 
+        parser.optionxform = lambda optionstr: optionstr
         
         parser.read(config_path)
         config = Config()
