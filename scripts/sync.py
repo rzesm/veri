@@ -61,8 +61,8 @@ def print_changes(config: Config, profile: Profile):
         print("    Some dconf settings will be overriden.")
     if "nozsh" not in config.flags:
         print("    Shell will be set to Zsh.")
-    if "nowebapps" not in config.flags:
-        print("    Zen Browser web apps will be configured.")
+    # if "nowebapps" not in config.flags:
+    #     print("    Zen Browser web apps will be configured.")
     if "noplugins" not in config.flags:
         print("    Hyprland plugins will be configured.")
     
@@ -94,8 +94,8 @@ def make_changes(config: Config, profile: Profile):
         sh("sudo chsh -s /usr/bin/zsh $USER")
 
     # set up system web apps
-    if "nowebapps" not in config.flags:
-        sh("scripts/set_up_web_apps.sh")
+    # if "nowebapps" not in config.flags:
+    #     sh("scripts/set_up_web_apps.sh")
         
     # set up hyprland plugins
     if "noplugins" not in config.flags:

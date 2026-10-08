@@ -58,7 +58,7 @@ case "$CHOICE" in
         qview "$TEMP_IMG"
         ;;
     *"$OPTION_EDIT"*)
-        python ~/.config/hypr/scripts/photopea_open.py "$TEMP_IMG"
+        photon-studio "$TEMP_IMG"
         ;;
     *"$OPTION_SAVE"*)
         wl-copy < $TEMP_IMG
