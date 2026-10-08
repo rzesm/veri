@@ -1,7 +1,7 @@
 -- check if vscode
 local is_vscode = vim.g.vscode ~= nil
 
--- background color (Only for terminal nvim)
+-- background color (only for terminal nvim)
 if not is_vscode then
     vim.cmd [[
         highlight Normal guibg=NONE ctermbg=NONE
@@ -23,6 +23,22 @@ vim.o.shiftwidth = 4
 vim.o.number = true
 vim.o.relativenumber = true
 
+-- no -- MODE --
+vim.o.showmode = false
+
+-- scrolloff
+vim.opt.scrolloff = 8
+
+-- scrolloff fix for vscode
+if vim.g.vscode then
+  vim.keymap.set({'n', 'v'}, 'H', 'Hj', { remap = false })
+  vim.keymap.set({'n', 'v'}, 'L', 'Lk', { remap = false })
+end
+
+-- multicursor rendering fix for vscode
+vim.g.VM_set_statusline = 0
+vim.g.VM_show_warnings = 0
+vim.g.VM_silent_exit = 1
 
 -- plugin loader setup
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -36,9 +52,6 @@ if not vim.loop.fs_stat(lazypath) then
     })
 end
 vim.opt.rtp:prepend(lazypath)
-
--- no -- MODE --
-vim.o.showmode = false
 
 -- plugins
 require("lazy").setup({
@@ -60,9 +73,8 @@ require("lazy").setup({
         branch = "master",
     },
 
-    {
-        "nvim-lualine/lualine.nvim",
-        enabled = not is_vscode, -- Don't load in VS Code
+    { "nvim-lualine/lualine.nvim",
+        enabled = not is_vscode,
         dependencies = { "nvim-tree/nvim-web-devicons" },
         config = function()
             require("lualine").setup {
@@ -97,10 +109,10 @@ require("lazy").setup({
 vim.api.nvim_set_hl(0, "FlashMatch", { fg = "#000000", bg = "#ffffff", bold = true })
 vim.api.nvim_set_hl(0, "FlashLabel", { fg = "#000000", bg = "#ff3333", bold = true })
 
+-- KEYMAPS
+
 vim.keymap.set("n", "<C-/>", "gcc", { remap = true, desc = "Toggle comment" })
 vim.keymap.set("v", "<C-/>", "gc", { remap = true, desc = "Toggle comment" })
-
--- KEYMAPS
 
 -- yank paste and delete semantics
 vim.keymap.set({ "n", "v" }, "<leader>y", '"+y')
