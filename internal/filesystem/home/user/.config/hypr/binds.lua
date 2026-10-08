@@ -26,14 +26,15 @@ hl.bind("SUPER + SHIFT + F23", hl.dsp.exec_cmd("pkill -SIGTERM -f ~/.config/hypr
 -- Apps
 
 hl.bind("SUPER + C", hl.dsp.exec_cmd("kitty"))
+hl.bind("SUPER + SHIFT + C", hl.dsp.exec_cmd("~/.config/hypr/scripts/open_quick_terminal.sh"))
 hl.bind("SUPER + Q", hl.dsp.exec_cmd("pkill --exact rofi || hyprctl dispatch 'hl.dsp.window.close()'"))
 hl.bind("SUPER + E", hl.dsp.exec_cmd("nautilus -w"))
 hl.bind("SUPER + Space", hl.dsp.exec_cmd("pkill --exact rofi || rofi -show drun"))
 hl.bind("SUPER + I", hl.dsp.exec_cmd("kitty --app-id=neovim nvim"))
 hl.bind("SUPER + B", hl.dsp.exec_cmd("zen-browser"))
-hl.bind("SUPER + V", hl.dsp.exec_cmd("~/.config/hypr/scripts/open_clipse.sh"))
-hl.bind("SUPER + Period", hl.dsp.exec_cmd("~/.config/hypr/scripts/open_unicode.sh"))
-hl.bind("SUPER + T", hl.dsp.exec_cmd("pkill -x resources || resources"))
+hl.bind("SUPER + V", hl.dsp.exec_cmd("pkill clipse-gui || clipse-gui"))
+hl.bind("SUPER + Period", hl.dsp.exec_cmd("~/.config/hypr/scripts/unicode_picker.sh"))
+hl.bind("SUPER + T", hl.dsp.exec_cmd("~/.config/hypr/scripts/open_resources.sh"))
 hl.bind("SUPER + SHIFT + T", hl.dsp.exec_cmd("pkill -x btop || kitty --class=btop btop"))
 
 -- Windows

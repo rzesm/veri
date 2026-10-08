@@ -1,9 +1,9 @@
 #!/usr/bin/bash
 
-CLASS="unicode-input"
+CLASS="unicode-picker"
 
 if hyprctl clients | grep -q "class: $CLASS"; then
-    hyprctl dispatch "hl.dsp.focus({ window = \"class:$CLASS\" })"
+    hyprctl dispatch "hl.dsp.window.close({ window = \"class:$CLASS\" })"
 else
     kitty --title="Unicode picker" --class="$CLASS" "$HOME/.config/hypr/scripts/unicode_input.sh" &
 fi

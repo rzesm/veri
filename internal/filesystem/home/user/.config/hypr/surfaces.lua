@@ -71,6 +71,7 @@ hl.window_rule({
 hl.window_rule({
     match = { class = "(clipse-gui)" },
     float = true,
+    pin = true,
     size = "460 500",
     move = "cursor_x-230 cursor_y-250",
 })
@@ -86,8 +87,9 @@ hl.window_rule({
 
 -- Unicode
 hl.window_rule({
-    match = { class = "(unicode-input)" },
+    match = { class = "(unicode-picker)" },
     float = true,
+    pin = true,
     size = "490 360",
     move = "cursor_x-245 cursor_y-180",
 })
@@ -189,6 +191,16 @@ hl.window_rule({
 -- Resources
 hl.window_rule({
     match = { class = "net.nokyan.Resources" },
+    animation = "slide",
+    float = true,
+    pin = true,
+    size = "900 620",
+    move = "monitor_w*0.5-450 monitor_h-620-5",
+})
+
+-- Quick terminal
+hl.window_rule({
+    match = { class = "quick-terminal" },
     animation = "slide",
     float = true,
     pin = true,
