@@ -140,7 +140,7 @@
 // Right
 
 "clock": {
-    "format": "{:%a%e %b · %H : %M}",
+    "format": "{:%a %e %b · %H : %M}",
     "tooltip": false,
     "on-click": "pkill -f '^yad --name=yad.calendar' || yad --name=yad.calendar --calendar --no-buttons"
 }
