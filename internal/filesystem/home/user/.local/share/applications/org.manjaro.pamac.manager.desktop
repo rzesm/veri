@@ -11,5 +11,5 @@ MimeType=x-scheme-handler/appstream;x-scheme-handler/snap;application/vnd.flatpa
 X-GNOME-UsesNotifications=true
 X-Purism-FormFactor=Workstation;Mobile;
 StartupWMClass=pamac-manager
-DBusActivatable=true
+DBusActivatable=false
 Actions=updates;
