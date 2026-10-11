@@ -10,7 +10,7 @@ Veri is a minimal but polished and visually pleasing setup on top of Arch Linux 
 ### Notable features
 
 - Complete minimal desktop largely based on GTK apps
-- Extensive and convenient system navigation
+- Extensive navigation and intuitive workspace management
 - Unified search (applications, shell, web search, and calculator), powered by Rofi
 - Visual software management powered by Pamac
 - Shell setup powered by Zsh

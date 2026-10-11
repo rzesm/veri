@@ -59,17 +59,16 @@
 },
 
 "hyprland/workspaces": {
-    "all-outputs": true,
-    "on-scroll-up": "flock -n /tmp/waybar_workspace.lock sh -c 'hyprctl dispatch \"hl.dsp.focus({ workspace = \\\"r-1\\\" })\" && sleep 0.1'",
-    "on-scroll-down": "flock -n /tmp/waybar_workspace.lock sh -c 'hyprctl dispatch \"hl.dsp.focus({ workspace = \\\"r+1\\\" })\" && sleep 0.1'",
-    "on-click-right-release": "hyprctl eval 'hl.plugin.hyprexpo.expo(\"toggle\")'"
+    "all-outputs": false,
+    "on-scroll-up": "flock -n /tmp/waybar_workspace.lock sh -c '~/.config/hypr/scripts/bin/switch_workspace left && sleep 0.1'",
+    "on-scroll-down": "flock -n /tmp/waybar_workspace.lock sh -c '~/.config/hypr/scripts/bin/switch_workspace right && sleep 0.1'",
+    "on-click-release": "hyprctl eval 'hl.plugin.hyprexpo.expo(\"toggle\")'"
 },
 
 "group/center-icons": {
     "orientation": "horizontal",
     "modules": [
         "custom/launcher",
-        // "custom/overview",
         "custom/power",
         "idle_inhibitor",
         "pulseaudio",
@@ -81,13 +80,6 @@
 "custom/launcher": {
     "format": "\uf002",
     "on-click": "rofi -show drun",
-    "tooltip": false
-},
-
-"custom/overview": {
-    "format": "\uf14e",
-    "on-click": "",
-    "on-click-release": "~/.config/hypr/scripts/toggle_overview.sh",
     "tooltip": false
 },
 
