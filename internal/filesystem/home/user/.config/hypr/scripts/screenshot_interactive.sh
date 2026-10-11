@@ -6,7 +6,7 @@ rm "$TEMP_IMG"
 mkdir -p "$SAVE_DIR"
 
 # Take the screenshot and check for output
-wayfreeze & PID=$!; sleep .1; grim -g "$(slurp -b 000000b3 -c ffffff55 -w 1)" $TEMP_IMG; kill $PID
+wayfreeze & PID=$!; sleep .1; grim -g "$(slurp -b 00000033 -c ffffff99 -w 1)" $TEMP_IMG; kill $PID
 if [ ! -f "$TEMP_IMG" ]; then
     exit 0
 fi
