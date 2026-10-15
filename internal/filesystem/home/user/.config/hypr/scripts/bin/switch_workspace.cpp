@@ -11,7 +11,7 @@
 
 namespace fs = std::filesystem;
 
-std::string hyprland_request(std::string_view request) {
+std::string hyprlandRequest(std::string_view request) {
     const char* xdg_runtime = std::getenv("XDG_RUNTIME_DIR");
     const char* his = std::getenv("HYPRLAND_INSTANCE_SIGNATURE");
     if (!xdg_runtime || !his) return "";
@@ -53,7 +53,7 @@ std::string hyprland_request(std::string_view request) {
     return response;
 }
 
-int extract_json_int(std::string_view json, std::string_view key) {
+int extractJsonInt(std::string_view json, std::string_view key) {
     std::string search_key = "\"" + std::string(key) + "\"";
     size_t pos = json.find(search_key);
     if (pos == std::string_view::npos) return -1;
@@ -98,15 +98,15 @@ std::vector<int> extract_all_workspace_ids(std::string_view json) {
     return ids;
 }
 
-void handle_right() {
-    std::string active_res = hyprland_request("j/activeworkspace");
+void handleRight() {
+    std::string active_res = hyprlandRequest("j/activeworkspace");
     if (active_res.empty()) return;
 
-    int active_id = extract_json_int(active_res, "id");
-    int window_count = extract_json_int(active_res, "windows");
+    int active_id = extractJsonInt(active_res, "id");
+    int window_count = extractJsonInt(active_res, "windows");
     if (active_id == -1 || window_count == -1) return;
 
-    std::string workspaces_res = hyprland_request("j/workspaces");
+    std::string workspaces_res = hyprlandRequest("j/workspaces");
     if (workspaces_res.empty()) return;
 
     std::vector<int> ids = extract_all_workspace_ids(workspaces_res);
@@ -125,18 +125,18 @@ void handle_right() {
     }
 
     if (!dispatch_cmd.empty()) {
-        hyprland_request(dispatch_cmd);
+        hyprlandRequest(dispatch_cmd);
     }
 }
 
-void handle_left() {
-    std::string active_res = hyprland_request("j/activeworkspace");
+void handleLeft() {
+    std::string active_res = hyprlandRequest("j/activeworkspace");
     if (active_res.empty()) return;
 
-    int active_id = extract_json_int(active_res, "id");
+    int active_id = extractJsonInt(active_res, "id");
     if (active_id == -1) return;
 
-    std::string workspaces_res = hyprland_request("j/workspaces");
+    std::string workspaces_res = hyprlandRequest("j/workspaces");
     if (workspaces_res.empty()) return;
 
     std::vector<int> ids = extract_all_workspace_ids(workspaces_res);
@@ -146,23 +146,21 @@ void handle_left() {
     }
 
     if (active_id != min_id) {
-        hyprland_request("dispatch hl.dsp.focus({ workspace = 'e-1' })");
+        hyprlandRequest("dispatch hl.dsp.focus({ workspace = 'e-1' })");
     }
 }
 
 int main(int argc, char* argv[]) {
     if (argc < 2) {
-        std::cerr << "Usage: switch_workspace <left|right>\n";
         return 1;
     }
 
     std::string direction(argv[1]);
     if (direction == "right") {
-        handle_right();
+        handleRight();
     } else if (direction == "left") {
-        handle_left();
+        handleLeft();
     } else {
-        std::cerr << "Unknown direction: " << direction << ". Use 'left' or 'right'.\n";
         return 1;
     }
 

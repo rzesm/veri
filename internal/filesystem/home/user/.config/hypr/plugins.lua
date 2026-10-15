@@ -33,6 +33,8 @@ if hl.plugin.hyprexpo ~= nil then
                 dynamic_grid = 1,
                 show_workspace_names = false,
                 label_enable = 0,
+                show_pinned_windows = 1,
+                number_key_mode = "index"
             },
         },
     })

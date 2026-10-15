@@ -178,16 +178,6 @@ hl.window_rule({
     move = "monitor_w-344 40",
 })
 
--- btop
-hl.window_rule({
-    match = { class = "btop" },
-    animation = "slide",
-    float = true,
-    pin = true,
-    size = "900 620",
-    move = "monitor_w*0.5-450 monitor_h-620-5",
-})
-
 -- Resources
 hl.window_rule({
     match = { class = "net.nokyan.Resources" },

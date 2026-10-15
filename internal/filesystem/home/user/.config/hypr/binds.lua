@@ -35,7 +35,6 @@ hl.bind("SUPER + B", hl.dsp.exec_cmd("zen-browser"))
 hl.bind("SUPER + V", hl.dsp.exec_cmd("pkill clipse-gui || clipse-gui"))
 hl.bind("SUPER + Period", hl.dsp.exec_cmd("~/.config/hypr/scripts/unicode_picker.sh"))
 hl.bind("SUPER + T", hl.dsp.exec_cmd("~/.config/hypr/scripts/open_resources.sh"))
-hl.bind("SUPER + SHIFT + T", hl.dsp.exec_cmd("pkill -x btop || kitty --class=btop btop"))
 
 -- Windows
 
