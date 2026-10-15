@@ -58,7 +58,7 @@ case "$CHOICE" in
         qview "$TEMP_IMG"
         ;;
     *"$OPTION_EDIT"*)
-        python ~/.config/hypr/scripts/photopea_open.py "$TEMP_IMG"
+        photocraft "$TEMP_IMG"
         ;;
     *"$OPTION_SAVE"*)
         wl-copy < $TEMP_IMG
@@ -94,3 +94,5 @@ esac
 
 rm "$TEMP_IMG"
 rm "$PREVIEW_IMG"
+
+
