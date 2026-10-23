@@ -1,6 +1,14 @@
 #!/bin/bash
 
-# if already recording
+# Cancel active selection if there is one
+if pgrep -f "slurp" > /dev/null; then
+    pkill -x wayfreeze
+    pkill -x slurp
+    pkill -x grim
+    exit 0
+fi
+
+# Cancel an existing recording
 if pkill wf-recorder; then 
     notify-send "Recording saved"
     sleep 0.5
@@ -8,15 +16,15 @@ if pkill wf-recorder; then
     exit 0
 fi
 
-# get geometry or exit
+# Get geometry or exit
 if ! geometry=$(slurp -b 00000033 -c ff555599 -w 1); then
     notify-send "Recording cancelled"
     exit 0
 fi
 
-# start recording
+# Start recording
 wf-recorder --audio=$(pactl get-default-sink).monitor -g "$geometry" -f "$(xdg-user-dir VIDEOS)/$(date +'%Y-%m-%d_%H-%M-%S').mp4" &
 
-# refresh waybar indicator
+# Refresh waybar indicator
 sleep 0.5
 pkill -RTMIN+1 waybar

@@ -1,5 +1,13 @@
 #!/bin/bash
 
+# Cancel active selection if there is one
+if pgrep -f "slurp" > /dev/null; then
+    pkill -x wayfreeze
+    pkill -x slurp
+    pkill -x grim
+    exit 0
+fi
+
 exec wayfreeze & PID=$!
 sleep .1
 

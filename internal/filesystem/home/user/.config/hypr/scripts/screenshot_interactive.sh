@@ -1,9 +1,19 @@
 #!/bin/bash
 
 TEMP_IMG="/tmp/ssm.png"
+PREVIEW_IMG="/tmp/ssm_padded.png"
 SAVE_DIR="$HYPRSHOT_DIR"
 rm "$TEMP_IMG"
+rm "$PREVIEW_IMG"
 mkdir -p "$SAVE_DIR"
+
+# Cancel active selection if there is one
+if pgrep -f "slurp" > /dev/null; then
+    pkill -x wayfreeze
+    pkill -x slurp
+    pkill -x grim
+    exit 0
+fi
 
 # Take the screenshot and check for output
 wayfreeze & PID=$!; sleep .1; grim -g "$(slurp -b 00000033 -c ffffff99 -w 1)" $TEMP_IMG; kill $PID
@@ -11,7 +21,6 @@ if [ ! -f "$TEMP_IMG" ]; then
     exit 0
 fi
 
-PREVIEW_IMG="/tmp/ssm_padded.png"
 magick "$TEMP_IMG" -resize 300x302 -background transparent -gravity center -extent 300x302 "$PREVIEW_IMG"
 
 OPTION_OPEN="  View"
