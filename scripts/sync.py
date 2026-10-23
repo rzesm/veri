@@ -16,7 +16,7 @@ def ask_to_generate_config():
     
 def get_available_package_version(name):
     return sh(
-        f"LC_ALL=C yay -Si {name} | sed -n 's/^Version\\s*:\\s*//p'",
+        f"LC_ALL=C yay -Si {name} | sed -n 's/^Version\\s*:\\s*//p' | head -n 1",
         capture=True).stdout.strip()
 
 def print_changes(config: Config, profile: Profile):
