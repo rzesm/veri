@@ -1,23 +1,22 @@
 -- LOOK AND FEEL
 
-hl.curve("linear", { type = "bezier", points = { { 0.00, 0.00 }, { 1.00, 1.00 } } })
-hl.curve("ease_in", { type = "bezier", points = { { 0.55, 0.06 }, { 0.68, 0.19 } } })
 hl.curve("ease_out", { type = "bezier", points = { { 0.21, 0.61 }, { 0.35, 1.00 } } })
-hl.curve("ease_in_out", { type = "bezier", points = { { 0.65, 0.04 }, { 0.35, 1.00 } } })
-hl.curve("ease_in_exp", { type = "bezier", points = { { 0.95, 0.05 }, { 0.80, 0.04 } } })
 hl.curve("ease_out_exp", { type = "bezier", points = { { 0.19, 1.00 }, { 0.22, 1.00 } } })
-hl.curve("ease_in_out_exp", { type = "bezier", points = { { 1.00, 0.00 }, { 0.00, 1.00 } } })
+hl.curve("ease_out_exp_springy", { type = "bezier", points = { { 0.19, 1.30 }, { 0.22, 0.96 } } })
+hl.curve("ease_out_exp_little_springy", { type = "bezier", points = { { 0.16, 1.12 }, { 0.22, 1 } } })
+hl.curve("ease_out_exp_very_springy", { type = "bezier", points = { { 0.19, 1.40 }, { 0.22, 0.93 } } })
+
 hl.animation({
     leaf = "windows",
     enabled = true,
     speed = 3,
-    bezier = "ease_out_exp",
+    bezier = "ease_out_exp_little_springy",
 })
 hl.animation({
     leaf = "windowsIn",
     enabled = true,
     speed = 3,
-    bezier = "ease_out_exp",
+    bezier = "ease_out_exp_springy",
     style = "popin 50%",
 })
 hl.animation({
@@ -28,9 +27,16 @@ hl.animation({
     style = "popin 80%",
 })
 hl.animation({
-    leaf = "layers",
+    leaf = "layersIn",
     enabled = true,
     speed = 3,
+    bezier = "ease_out_exp_very_springy",
+    style = "popin 70%",
+})
+hl.animation({
+    leaf = "layersOut",
+    enabled = true,
+    speed = 2,
     bezier = "ease_out_exp",
     style = "popin 90%",
 })
@@ -43,7 +49,7 @@ hl.animation({
 hl.animation({
     leaf = "fadeLayers",
     enabled = true,
-    speed = 5,
+    speed = 4,
     bezier = "ease_out",
 })
 hl.animation({
@@ -61,8 +67,14 @@ hl.animation({
 hl.animation({
     leaf = "workspaces",
     enabled = true,
-    speed = 4,
-    bezier = "ease_out_exp",
+    speed = 3,
+    bezier = "ease_out_exp_little_springy",
+})
+hl.animation({
+    leaf = "zoomFactor",
+    enabled = true,
+    speed = 3,
+    bezier = "ease_out_exp"
 })
 
 hl.config({
@@ -86,15 +98,22 @@ hl.config({
         shadow = {
             enabled = true,
             range = 10,
-            render_power = 100,
+            render_power = 4,
             color = "rgba(00000077)",
             color_inactive = "rgba(00000000)",
         },
         blur = {
             enabled = true,
-            size = 8,
+            size = 18,
             passes = 3,
             noise = 0.02,
+        },
+        glow = {
+            enabled = true,
+            range = 30,
+            render_power = 4,
+            color = 0x11ffffff,
+            color_inactive = 0x00ffffff,
         },
     },
     dwindle = {

@@ -9,7 +9,12 @@ if pgrep -x waybar >/dev/null; then
         },
         decoration = {
             rounding = 8,
+            glow = {
+                range = 18,
+                render_power = 3
+            }
         },
+
     })'
 else
     waybar & disown
@@ -20,6 +25,10 @@ else
         },
         decoration = {
             rounding = 20,
+            glow = {
+                range = 30,
+                render_power = 4
+            }
         },
     })'
 fi

@@ -8,7 +8,7 @@ hl.monitor({
 })
 
 hl.define_submap("empty", function() 
-    hl.bind("SUPER", function() end)
+    hl.bind("X", function() end)
 end)
 
 hl.on("hyprland.start", function()

@@ -10,11 +10,11 @@ hl.bind("SUPER + SHIFT + S", hl.dsp.exec_cmd("~/.config/hypr/scripts/screenshot_
 
 hl.bind("SUPER + mouse_up", function()
     local current = hl.get_config("cursor.zoom_factor") or 1.0
-    hl.config({ cursor = { zoom_factor = current * 1.1 } })
+    hl.config({ cursor = { zoom_factor = math.min(20.0, current * 1.2) } })
 end)
 hl.bind("SUPER + mouse_down", function()
     local current = hl.get_config("cursor.zoom_factor") or 1.0
-    hl.config({ cursor = { zoom_factor = math.max(1.0, current / 1.1) } })
+    hl.config({ cursor = { zoom_factor = math.max(1.0, current / 1.2) } })
 end)
 
 hl.bind("SUPER + R", hl.dsp.exec_cmd("~/.config/hypr/scripts/record_screen.sh"))

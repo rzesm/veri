@@ -67,13 +67,6 @@ def generate_filesystem(config: Config):
 
     sh(f"mkdir -p {FILESYSTEM_PATH}/etc/udev/rules.d")
     open(f"{FILESYSTEM_PATH}/etc/udev/rules.d/99-usb-sounds.rules", "w").write(USB_SOUNDS)
-
-    zephyr = "https://github.com/Rudraksh88/zephyr-kvantum.git"
-    sh(f"mkdir -p {FILESYSTEM_PATH}/home/{USERNAME}/.config/Kvantum")
-    if sh(f"git clone {zephyr} {FILESYSTEM_PATH}/home/{USERNAME}/.config/Kvantum/Zephyr").returncode != 0:
-        raise RuntimeError(f"failed to clone {zephyr}")
-    sh(f"rm -rf {FILESYSTEM_PATH}/home/{USERNAME}/.config/Kvantum/Zephyr/.git")
-    sh(f"rm -rf {FILESYSTEM_PATH}/home/{USERNAME}/.config/Kvantum/Zephyr/images")
     
     # remove ignored files
     for file in config.ignored_files:

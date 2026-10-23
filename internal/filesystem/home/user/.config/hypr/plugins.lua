@@ -34,7 +34,7 @@ if hl.plugin.hyprexpo ~= nil then
                 show_workspace_names = false,
                 label_enable = 0,
                 show_pinned_windows = 1,
-                number_key_mode = "index"
+                number_key_mode = "index",
             },
         },
     })
