@@ -69,7 +69,7 @@ def print_changes(config: Config, profile: Profile):
 def make_changes(config: Config, profile: Profile):
     # update system
     if "nosyu" not in config.flags:
-        if sh(f"yay --noconfirm", capture=True).returncode != 0:
+        if sh(f"yay --noconfirm").returncode != 0:
             print(f"sync.py: error: Failed to update the system. Try manually with 'yay'.")
             exit(1)
 
