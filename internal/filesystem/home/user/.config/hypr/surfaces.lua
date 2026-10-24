@@ -180,7 +180,7 @@ hl.window_rule({
 
 -- Resources
 hl.window_rule({
-    match = { class = "net.nokyan.Resources" },
+    match = { class = "org.gnome.Resources" },
     animation = "slide",
     float = true,
     pin = true,

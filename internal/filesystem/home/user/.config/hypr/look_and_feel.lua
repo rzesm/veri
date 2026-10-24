@@ -127,5 +127,9 @@ hl.config({
     gestures = {
         workspace_swipe_cancel_ratio = 0.2,
     },
+    ecosystem = {
+        no_donation_nag = true,
+        no_update_news = true
+    }
 })
 
