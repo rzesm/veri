@@ -37,13 +37,6 @@ def ensure_packages(packages: list[str]):
 
     return True
         
-def ensure_aur():
-    ping = sh("curl -fsS --max-time 5 https://aur.archlinux.org/", capture=True)
-    if ping.returncode != 0:
-        print("runtime.py: error: failed to connect to aur.archlinux.org")
-        return False
-    return True
-
 def ensure_repository(repository: str):
     # check if already enabled
     if sh(f"pacman-conf --repo-list | grep -q {repository}").returncode == 0:
@@ -96,5 +89,4 @@ def ensure_runtime():
         ensure_repository("extra") and \
         ensure_repository("multilib") and \
         ensure_packages(["rsync", "tree", "git", "base-devel"]) and \
-        ensure_aur() and \
         ensure_yay()
