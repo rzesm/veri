@@ -71,9 +71,9 @@
         "custom/launcher",
         "custom/power",
         "idle_inhibitor",
-        "pulseaudio",
-        "network",
-        "bluetooth"
+        "pulseaudio"
+        ,"network"
+        ,"bluetooth"
     ]
 },
 
