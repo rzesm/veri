@@ -97,7 +97,7 @@
 "pulseaudio": {
     "format": "\uf028",
     "tooltip-format": "{desc} ({volume}%)",
-    "on-click": "pkill pwvucontrol || (pkill -f \"$HOME/.config/waybar/power.sh\"; pkill adwifi; pkill adw-bluetooth; pwvucontrol)"
+    "on-click": "pkill pwvucontrol || (pkill -9 -f '^yad --name=yad.power'; pkill adwifi; pkill adw-bluetooth; pwvucontrol)"
 },
 
 "network": {
@@ -105,7 +105,7 @@
     "tooltip-format": "Connected to {essid}",
     "tooltip-format-disabled": "Wi-Fi disabled",
     "tooltip-format-disconnected": "Wi-Fi not connected",
-    "on-click": "pkill adwifi || (pkill -f \"$HOME/.config/waybar/power.sh\"; pkill pwvucontrol; pkill adw-bluetooth; adwifi)"
+    "on-click": "pkill adwifi || (pkill -9 -f '^yad --name=yad.power'; pkill pwvucontrol; pkill adw-bluetooth; adwifi)"
 },
 
 "bluetooth": {
@@ -114,7 +114,7 @@
     "tooltip-format-disabled": "Bluetooth disabled",
     "tooltip-format-off": "Bluetooth disabled",
     "tooltip-format-connected": "Connected to {device_alias}",
-    "on-click": "pkill adw-bluetooth || (pkill -f \"$HOME/.config/waybar/power.sh\"; pkill pwvucontrol; pkill adwifi; adw-bluetooth)"
+    "on-click": "pkill adw-bluetooth || (pkill -9 -f '^yad --name=yad.power'; pkill pwvucontrol; pkill adwifi; adw-bluetooth)"
 },
 
 "custom/left": {
