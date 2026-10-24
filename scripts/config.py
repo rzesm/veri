@@ -55,8 +55,9 @@ def parse_config():
 def generate_empty_config():
     CONFIG_CONTENT = dedent("""\
         [flags]
-        # Extra flags to apply during installation, each on a new line.
-        # Uncomment a flag to enable it:
+        # Extra flags to apply during installation.
+        # Use these only if you know what you are doing.
+        # Uncomment a flag to enable it.
         # nozsh
         # nosyu
         # nodconf
