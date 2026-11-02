@@ -5,7 +5,7 @@
 "exclusive": true,
 "focusable": false,
 "margin-bottom": 0,
-"margin-top": 10,
+"margin-top": 6,
 
 "modules-left": ["cpu", "battery", "custom/recording"],
 "modules-center": ["wlr/taskbar", "hyprland/workspaces", "group/center-icons", "tray"],

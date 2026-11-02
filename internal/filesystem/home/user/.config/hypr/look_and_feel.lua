@@ -80,7 +80,7 @@ hl.animation({
 hl.config({
     general = {
         gaps_in = 3,
-        gaps_out = 10,
+        gaps_out = 6,
         border_size = 1,
         col = {
             active_border = { colors = { "rgba(ffffff55)", "rgba(ffffff22)" }, angle = 90 },
@@ -106,7 +106,7 @@ hl.config({
             enabled = true,
             size = 18,
             passes = 3,
-            noise = 0.02,
+            noise = 0.02
         },
         glow = {
             enabled = true,
@@ -114,7 +114,7 @@ hl.config({
             render_power = 4,
             color = 0x11ffffff,
             color_inactive = 0x00ffffff,
-        },
+        }
     },
     dwindle = {
         preserve_split = true,
@@ -123,6 +123,7 @@ hl.config({
         force_default_wallpaper = 0,
         disable_hyprland_logo = true,
         disable_splash_rendering = true,
+        bell_sound = "none"
     },
     gestures = {
         workspace_swipe_cancel_ratio = 0.2,

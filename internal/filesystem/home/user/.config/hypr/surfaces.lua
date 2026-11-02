@@ -111,7 +111,7 @@ hl.window_rule({
     float = true,
     pin = true,
     size = "600 400",
-    move = "monitor_w*0.5-300 40",
+    move = "monitor_w*0.5-300 34",
 })
 
 -- pwvucontrol                                      
@@ -121,7 +121,7 @@ hl.window_rule({
     float = true,
     pin = true,
     size = "900 600",
-    move = "monitor_w*0.5-450 40",
+    move = "monitor_w*0.5-450 34",
 })
 
 -- Adwaita Bluetooth
@@ -134,7 +134,7 @@ hl.window_rule({
     float = true,
     pin = true,
     size = "600 400",
-    move = "monitor_w*0.5-300 40",
+    move = "monitor_w*0.5-300 34",
 })
 -- This fixes a weird glitch that is beyond my comprehension
 hl.window_rule({
@@ -155,7 +155,7 @@ hl.window_rule({
     float = true,
     pin = true,
     size = "280 50",
-    move = "monitor_w*0.5-140 40",
+    move = "monitor_w*0.5-140 35",
 })
 
 -- Charge limit menu
@@ -165,7 +165,7 @@ hl.window_rule({
     float = true,
     pin = true,
     size = "250 150",
-    move = "5 40",
+    move = "4 34",
 })
 
 -- Calendar
@@ -175,7 +175,7 @@ hl.window_rule({
     float = true,
     pin = true,
     size = "338 233",
-    move = "monitor_w-344 40",
+    move = "monitor_w-342 35",
 })
 
 -- Resources
