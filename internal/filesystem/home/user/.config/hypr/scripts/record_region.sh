@@ -23,7 +23,7 @@ if ! geometry=$(slurp -b 00000033 -c ff555599 -w 1); then
 fi
 
 # Start recording
-wf-recorder --audio=$(pactl get-default-sink).monitor -g "$geometry" -f "$(xdg-user-dir VIDEOS)/$(date +'%Y-%m-%d_%H-%M-%S').mp4" &
+wf-recorder --audio=$(pactl get-default-sink).monitor -x yuvj420p -g "$geometry" -f "$(xdg-user-dir VIDEOS)/$(date +'%Y-%m-%d_%H-%M-%S').mp4" &
 
 # Refresh waybar indicator
 sleep 0.5

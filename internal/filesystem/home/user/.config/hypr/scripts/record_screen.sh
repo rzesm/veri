@@ -9,7 +9,7 @@ if pkill wf-recorder; then
 fi
 
 # start recording
-wf-recorder --audio=$(pactl get-default-sink).monitor -f "$(xdg-user-dir VIDEOS)/$(date +'%Y-%m-%d_%H-%M-%S').mp4" &
+wf-recorder --audio=$(pactl get-default-sink).monitor -x yuvj420p -f "$(xdg-user-dir VIDEOS)/$(date +'%Y-%m-%d_%H-%M-%S').mp4" &
 
 # refresh waybar indicator
 sleep 0.5
