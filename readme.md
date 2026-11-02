@@ -24,11 +24,11 @@ Veri is a minimal but polished and visually pleasing setup on top of Arch Linux 
 
 ### Notice
 
-Due to Arch Linux' nature things may change over time or break, affecting this project. There is no all time guarantee of stability of new installs, however I will attempt to deliver hotfixes as quickly as possible.
+Due to Arch Linux' nature things may change over time or break, affecting this project. There is no all time guarantee of stability of new installs, however I will attempt to deliver hotfixes as quickly as possible. See more at the end of the installation guide.
 
 # Installation guide
 
-The installer is meant for a fresh Arch Linux installation. It is possible to install Veri on top of a different environment, although things may and will break.
+The installer is meant for a fresh Arch Linux installation. It is possible to install Veri on top of a different environment, although things will likely break.
 
 ### Prerequisites
 
@@ -61,6 +61,10 @@ The installer is meant for a fresh Arch Linux installation. It is possible to in
 ### Using the installer
 
 Run the `sync` script from the installer's directory, which will guide you through the installation. Reboot your computer afterwards.
+
+### What if something doesn't work
+
+If you suspect something isn't working properly, it may be due to upstream package changes that have not yet been patched in Veri. One thing you can try is locking the pacman repositories to **a date closest to the latest commit in the Veri repository which updates the internal/packages file**. See more at [the Archlinux Wiki](https://wiki.archlinux.org/title/Downgrading_packages). If that does not help, your specific hardware/environment that Veri does not properly account for may be the cause. In either case feel free to open an issue.
 
 ### Maintaining the system
 
