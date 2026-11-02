@@ -64,7 +64,7 @@ Run the `sync` script from the installer's directory, which will guide you throu
 
 ### What if something doesn't work
 
-If you suspect something isn't working properly, it may be due to upstream package changes that have not yet been patched in Veri. One thing you can try is locking the pacman repositories to **a date closest to the latest commit in the Veri repository which updates the internal/packages file**. See more at [the Archlinux Wiki](https://wiki.archlinux.org/title/Downgrading_packages). If that does not help, your specific hardware/environment that Veri does not properly account for may be the cause. In either case feel free to open an issue.
+If you suspect something isn't working properly, it may be due to upstream package changes that have not yet been patched in Veri. One thing you can try is locking the pacman repositories to **a date closest to the latest commit in the Veri repository which updates the `internal/packages` file**. See more at [the Archlinux Wiki](https://wiki.archlinux.org/title/Downgrading_packages). If that does not help, your specific hardware/environment that Veri does not properly account for may be the cause. In either case feel free to open an issue.
 
 ### Maintaining the system
 
