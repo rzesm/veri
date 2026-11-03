@@ -20,8 +20,8 @@ end)
 hl.bind("SUPER + R", hl.dsp.exec_cmd("~/.config/hypr/scripts/record_screen.sh"))
 hl.bind("SUPER + SHIFT + R", hl.dsp.exec_cmd("~/.config/hypr/scripts/record_region.sh"))
 
-hl.bind("SUPER + SHIFT + F23", hl.dsp.exec_cmd("~/.config/hypr/scripts/touchpad_control.sh"))
-hl.bind("SUPER + SHIFT + F23", hl.dsp.exec_cmd("pkill -SIGTERM -f ~/.config/hypr/scripts/touchpad_control.sh"), { release = true })
+hl.bind("SUPER + SHIFT + code:201", hl.dsp.exec_cmd("~/.config/hypr/scripts/touchpad_control.sh"))
+hl.bind("SUPER + SHIFT + code:201", hl.dsp.exec_cmd("pkill -SIGTERM -f ~/.config/hypr/scripts/touchpad_control.sh"), { release = true })
 
 -- Apps
 
