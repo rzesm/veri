@@ -57,8 +57,6 @@ def print_changes(config: Config, profile: Profile):
     print("\nFurthermore:")
     if "nosyu" not in config.flags:
         print("    Full system update will run.")
-    if "nodconf" not in config.flags:
-        print("    Some dconf settings will be overriden.")
     if "nozsh" not in config.flags:
         print("    Shell will be set to Zsh.")
     if "nowebapps" not in config.flags:
@@ -86,10 +84,6 @@ def make_changes(config: Config, profile: Profile):
     # set gsettings
     for gsetting in profile.gsettings:
         sh(f"dbus-run-session gsettings set {" ".join(gsetting)}")
-        
-    # write dconf settings
-    if "nodconf" not in config.flags:
-        sh("dbus-run-session dconf write /io/github/bluemancz/hyprmods/config-path \"'hyprmod.lua'\"")
 
     # change shell
     if "nozsh" not in config.flags:

@@ -48,3 +48,7 @@ alias diff="diff --color=auto"
 alias grep="grep --color=auto"
 alias cat="bat --style=header,numbers"
 alias nv="nvim"
+
+if [ -f "$HOME/.zshrc.local" ]; then
+    . "$HOME/.zshrc.local"
+fi

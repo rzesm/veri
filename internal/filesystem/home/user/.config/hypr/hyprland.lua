@@ -4,6 +4,5 @@ require("surfaces")
 require("binds")
 require("input")
 require("plugins")
-
-require("personal")
-require("hyprmod")
+require("local")
+require("hyprland-gui")
