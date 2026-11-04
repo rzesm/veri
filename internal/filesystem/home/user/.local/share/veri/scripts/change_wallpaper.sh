@@ -28,7 +28,7 @@ SELECTED=$(
             }
             element {
                 orientation: vertical;
-                border-radius: 10px;
+                border-radius: 18px;
                 padding: 10px;
             }
             element-icon {
