@@ -1,0 +1,5 @@
+[Desktop Entry]
+Name=Change Wallpaper
+Icon=preferences-desktop-wallpaper
+Type=Application
+Exec=sh -c "$HOME/.local/share/veri/scripts/change_wallpaper.sh"

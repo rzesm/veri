@@ -1,5 +1,18 @@
 -- CORE
 
+-- Environment variables
+
+local home = os.getenv("HOME")
+local path = os.getenv("PATH") or ""
+
+hl.env("PATH", home .. "/bin:" .. home .. "/.local/share/veri/bin:" .. path)
+hl.env("QT_QPA_PLATFORMTHEME", "qt5ct")
+hl.env("HYPRSHOT_DIR", home .. "/captures")
+hl.env("XCURSOR_THEME", "Adwaita")
+hl.env("XCURSOR_SIZE", "24")
+hl.env("SUDO_ASKPASS", home .. "/.config/hypr/scripts/askpass.sh")
+hl.env("GDK_WAYLAND_DISABLE", "ext_background_effect_manager_v1")
+
 hl.monitor({
     output = "",
     mode = "preferred",
