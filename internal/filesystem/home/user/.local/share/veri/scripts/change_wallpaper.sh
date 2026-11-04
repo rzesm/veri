@@ -35,6 +35,9 @@ SELECTED=$(
                 size: 100px;
                 horizontal-align: 0.5;
             }
+            element-text {
+                horizontal-align: 0.5;
+            }
         '
 )
 
