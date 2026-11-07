@@ -8,7 +8,7 @@ if pgrep -x waybar >/dev/null; then
             gaps_in = 1,
         },
         decoration = {
-            rounding = 4,
+            rounding = 6,
             glow = {
                 range = 18,
                 render_power = 3

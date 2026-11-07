@@ -9,7 +9,6 @@
     font-family: "system-ui";
     font-weight: 400;
     font-size: 14px;
-    text-shadow: 0 0 2px rgba(0, 0, 0, 0.7);
 }
 
 #waybar {
@@ -29,6 +28,7 @@ tooltip {
     margin-left: 12px;
     color: rgba(150, 230, 255, 1);
     transition-duration: 1000ms;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 1);
 }
 #cpu.low {
     color: rgba(150, 255, 120, 1);
@@ -57,11 +57,13 @@ tooltip {
     animation-duration: 2s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 1);
 }
 #battery {
     margin-left: 10px;
     transition-duration: 100ms;
     font-size: 16px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 1);
 }
 #battery:hover { color: rgba(255, 255, 255, 0.7); }
 
@@ -94,19 +96,19 @@ tooltip {
 }
 
 #workspaces {
-    margin: 0px 5px;
-    padding: 0px 3px;
-    background: rgba(0, 0, 0, 0.7);
-    border-radius: 99px;
     border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: inset 0 0 0 15px rgba(0, 0, 0, 0.7);
+    margin: 0px 5px;
+    padding: 0px 5px;
+    border-radius: 99px;
 }
 #workspaces button {
     min-height: 0px;
     min-width: 0px;
-    margin: 9px 6px;
+    margin: 9px 4px;
     padding: 2px 2px;
     background: rgba(255, 255, 255, 1);
-    box-shadow: 0 0 0 0 rgba(255, 255, 255, 1);
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 1), inset 0 0 0 1px rgba(255, 255, 255, 1);
     transition-duration: 200ms;
     border-radius: 999px;
 }
@@ -114,7 +116,7 @@ tooltip {
     font-size: 0;
 }
 #workspaces button.visible {
-    box-shadow: 0 0 0 2 rgba(255, 255, 255, 1);
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 1), inset 0 0 0 1px rgba(255, 255, 255, 1);
 }
 
 #center-icons {
@@ -122,6 +124,7 @@ tooltip {
     box-shadow: inset 0 0 0 15px rgba(0, 0, 0, 0.7);
     border-radius: 99px;
     margin-left: 5px;
+    text-shadow: 0 0 2px rgba(0, 0, 0, 0.7);
 }
 #center-icons > widget > * {
     padding-left: 6px;
@@ -182,5 +185,6 @@ tooltip {
     padding-left: 10px;
     font-size: 16px;
     transition-duration: 100ms;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 1);
 }
 #clock:hover { color: rgba(255, 255, 255, 0.7); }

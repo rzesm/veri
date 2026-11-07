@@ -97,14 +97,14 @@ hl.config({
         inactive_opacity = 1,
         shadow = {
             enabled = true,
-            range = 10,
-            render_power = 4,
+            range = 20,
+            render_power = 3,
             color = "rgba(00000077)",
-            color_inactive = "rgba(00000000)",
+            color_inactive = "rgba(00000033)",
         },
         blur = {
             enabled = true,
-            size = 18,
+            size = 8,
             passes = 3,
             noise = 0.02
         },
