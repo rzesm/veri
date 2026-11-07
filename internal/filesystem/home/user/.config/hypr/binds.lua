@@ -74,6 +74,7 @@ hl.bind("SUPER + O", hl.dsp.layout("togglesplit"))
 
 hl.bind("SUPER + mouse:272", hl.dsp.window.drag())
 hl.bind("SUPER + mouse:273", hl.dsp.window.resize())
+hl.bind("SUPER + mouse:274", hl.dsp.layout("togglesplit"))
 
 -- Workspaces
 
