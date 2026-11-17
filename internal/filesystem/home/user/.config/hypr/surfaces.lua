@@ -12,12 +12,17 @@ hl.layer_rule({
 
 hl.layer_rule({
     match = { namespace = "rofi" },
-    blur = true, ignore_alpha = 0, dim_around = true,
+    blur = true, ignore_alpha = 0.18
 })
 
 hl.layer_rule({
     match = { namespace = "notifications" },
-    blur = true, ignore_alpha = 0,
+    blur = true, ignore_alpha = 0.18,
+})
+
+hl.layer_rule({
+    match = { namespace = "swayosd" },
+    blur = true, ignore_alpha = 0.18,
 })
 
 hl.layer_rule({

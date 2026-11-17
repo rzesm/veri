@@ -1,5 +1,5 @@
 configuration {
-modes: "drun,web:~/.config/rofi/modes/web,calc:~/.config/rofi/modes/calc";
+modes: "drun,web:~/.config/rofi/modes/web";
 font: "Adwaita Sans semibold 14";
 /*	location: 0;*/
 /*	yoffset: 0;*/
@@ -34,9 +34,9 @@ sort: true;
 /*	sorting-method: "normal";*/
 /*	case-sensitive: false;*/
 /*	case-smart: false;*/
-/*	cycle: true;*/
+cycle: false;
 /*	sidebar-mode: false;*/
-hover-select: true;
+// hover-select: true;
 /*	eh: 1;*/
 /*	auto-select: false;*/
 /*	parse-hosts: false;*/
@@ -154,8 +154,8 @@ kb-entry-history-down: "Control+Up";
 /*	ml-row-right: "ScrollRight";*/
 /*	ml-row-up: "ScrollUp";*/
 /*	ml-row-down: "ScrollDown";*/
-me-select-entry: "MouseDPrimary";
-me-accept-entry: "MousePrimary";
+// me-select-entry: "MouseDPrimary";
+// me-accept-entry: "MousePrimary";
 /*	me-accept-custom: "Control+MouseDPrimary";*/
   timeout {
       action: "kb-cancel";

@@ -139,14 +139,12 @@ vim.api.nvim_set_hl(0, "FlashLabel", { fg = "#000000", bg = "#ff3333", bold = tr
 
 -- KEYMAPS
 
-vim.keymap.set("n", "<C-/>", "gcc", { remap = true, desc = "Toggle comment" })
-vim.keymap.set("v", "<C-/>", "gc", { remap = true, desc = "Toggle comment" })
+vim.keymap.set("n", "<C-/>", "gcc", { remap = true })
+vim.keymap.set("v", "<C-/>", "gc", { remap = true })
 
--- yank paste and delete semantics
 vim.keymap.set({ "n", "v" }, "<leader>y", '"+y')
 vim.keymap.set({ "n", "v" }, "<leader>p", '"+p')
 vim.keymap.set("n", "<leader>P", '"+P')
 vim.keymap.set({ "n", "v" }, "<leader>d", '"+d')
 
--- sudo save with w!!
 vim.keymap.set("c", "w!!", "w !sudo -A tee %", { noremap = true })
