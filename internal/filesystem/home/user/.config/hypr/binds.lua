@@ -1,5 +1,16 @@
 -- BINDS
 
+local function update_zoom(zoom)
+    zoom = math.max(1, math.min(10, zoom))
+    hl.config({
+        cursor = {
+            zoom_factor = zoom,
+            zoom_disable_aa = zoom >= 2.0
+        }
+    })
+end
+
+
 -- General
 
 hl.bind("SUPER + W", hl.dsp.exec_cmd("~/.config/hypr/scripts/toggle_ui.sh"))
@@ -8,20 +19,19 @@ hl.bind("SUPER + PRINT", hl.dsp.exec_cmd("~/.config/hypr/scripts/screenshot_scre
 hl.bind("SUPER + S", hl.dsp.exec_cmd("~/.config/hypr/scripts/screenshot_region.sh"))
 hl.bind("SUPER + SHIFT + S", hl.dsp.exec_cmd("~/.config/hypr/scripts/screenshot_interactive.sh"))
 
+
 hl.bind("SUPER + mouse_up", function()
     local current = hl.get_config("cursor.zoom_factor") or 1.0
-    hl.config({ cursor = { zoom_factor = math.min(10.0, current * 1.2) } })
+    update_zoom(math.min(10.0, current * 1.2))
 end)
+
 hl.bind("SUPER + mouse_down", function()
     local current = hl.get_config("cursor.zoom_factor") or 1.0
-    hl.config({ cursor = { zoom_factor = math.max(1.0, current / 1.2) } })
+    update_zoom(math.max(1.0, current / 1.2))
 end)
 
 hl.bind("SUPER + R", hl.dsp.exec_cmd("~/.config/hypr/scripts/record_screen.sh"))
 hl.bind("SUPER + SHIFT + R", hl.dsp.exec_cmd("~/.config/hypr/scripts/record_region.sh"))
-
-hl.bind("SUPER + SHIFT + code:201", hl.dsp.exec_cmd("~/.config/hypr/scripts/touchpad_control.sh"))
-hl.bind("SUPER + SHIFT + code:201", hl.dsp.exec_cmd("pkill -SIGTERM -f ~/.config/hypr/scripts/touchpad_control.sh"), { release = true })
 
 -- Apps
 
@@ -83,25 +93,34 @@ hl.bind("SUPER + D", hl.dsp.exec_cmd("exec ~/.config/hypr/scripts/bin/switch_wor
 hl.bind("SUPER + Z", hl.dsp.exec_cmd("exec ~/.config/hypr/scripts/relocate_window.sh"))
 
 -- Function keys
+hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("swayosd-client --output-volume raise"), { locked = true, repeating = true })
+hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("swayosd-client --output-volume lower"), { locked = true, repeating = true })
+hl.bind("XF86AudioMute", hl.dsp.exec_cmd("swayosd-client --output-volume mute-toggle"), { locked = true, repeating = true })
+hl.bind("XF86AudioMicMute", hl.dsp.exec_cmd("swayosd-client --input-volume mute-toggle"), { locked = true, repeating = true })
+hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("swayosd-client --brightness raise"), { locked = true, repeating = true })
+hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("swayosd-client --brightness lower --min-brightness 0"), { locked = true, repeating = true })
 
-hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 4%+"), { locked = true, repeating = true })
-hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 4%-"), { locked = true, repeating = true })
-hl.bind("XF86AudioMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"), { locked = true, repeating = true })
-hl.bind("XF86AudioMicMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"), { locked = true, repeating = true })
-hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl set 5+"), { locked = true, repeating = true })
-hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl set 5-"), { locked = true, repeating = true })
+hl.bind("SUPER + SHIFT + code:201", hl.dsp.exec_cmd("~/.config/hypr/scripts/bin/cursor_control"))
+hl.bind("SUPER + SHIFT + code:201", hl.dsp.exec_cmd("pkill -SIGTERM -f ~/.config/hypr/scripts/bin/cursor_control"), { release = true })
+
 
 -- Gestures
-
--- TODO
 
 hl.gesture({
     fingers = 2,
     direction = "pinch",
     mods = "SUPER",
-    action = "cursorZoom",
-    zoom_level = 1,
-    mode = "live"
+
+    action = {
+        start = function(e)
+            zoom_at_start = hl.get_config("cursor.zoom_factor") or 1.0
+        end,
+
+        update = function(e)
+            local zoom = zoom_at_start * e.scale
+            update_zoom(zoom)
+        end
+    }
 })
 
 hl.gesture({
