@@ -79,6 +79,7 @@ snapshot 51.0-1
 sof-firmware 2026.09.2-1
 swaybg 1.2.2-1
 swayidle 1.9.1-1
+swayosd 0.3.2-1
 tesseract 5.5.4-1
 tesseract-data-eng 2:4.1.0-5
 trash-cli 0.24.5.26-3

@@ -1,0 +1,35 @@
+window#osd {
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 99px;
+    padding: 0;
+    background-clip: padding-box;
+    box-shadow: none;
+}
+
+window#osd #container {
+    margin: 0 0 0 0;
+}
+
+window#osd progressbar,
+window#osd trough,
+window#osd progress {
+    min-height: 4px;
+}
+window#osd progressbar {
+    margin-right: 14px;
+}
+
+window#osd progressbar trough {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 99px;
+}
+
+window#osd progressbar progress {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 99px;
+}
+
+window#osd image {
+    -gtk-icon-transform: scale(0.5);
+}
