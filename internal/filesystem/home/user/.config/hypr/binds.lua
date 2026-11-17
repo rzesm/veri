@@ -22,12 +22,12 @@ hl.bind("SUPER + SHIFT + S", hl.dsp.exec_cmd("~/.config/hypr/scripts/screenshot_
 
 hl.bind("SUPER + mouse_up", function()
     local current = hl.get_config("cursor.zoom_factor") or 1.0
-    update_zoom(math.min(10.0, current * 1.2))
+    update_zoom(math.min(current * 1.2))
 end)
 
 hl.bind("SUPER + mouse_down", function()
     local current = hl.get_config("cursor.zoom_factor") or 1.0
-    update_zoom(math.max(1.0, current / 1.2))
+    update_zoom(math.max(current / 1.2))
 end)
 
 hl.bind("SUPER + R", hl.dsp.exec_cmd("~/.config/hypr/scripts/record_screen.sh"))
