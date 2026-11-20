@@ -62,9 +62,9 @@ The installer is meant for a fresh Arch Linux installation. It is possible to in
 
 Run the `sync` script from the installer's directory, which will guide you through the installation. Reboot your computer afterwards.
 
-### What if something doesn't work
+### What if something isn't working
 
-If you suspect something isn't working properly, it may be due to upstream package changes that have not yet been patched in Veri. One thing you can try is locking the pacman repositories to **a date closest to the latest commit in the Veri repository which updates the `internal/packages` file**. See more at [the Archlinux wiki](https://wiki.archlinux.org/title/Downgrading_packages). If that does not help, the problem is likely your specific hardware/environment that Veri does not account for. In either case feel free to open an issue.
+If you suspect something related to Veri isn't working properly in your installation, it may be due to upstream package changes that have not yet been patched. One thing you can try is locking the pacman repositories to **a date closest to the latest commit in the Veri repository which updates the `internal/packages` file**. See more at [the Archlinux wiki](https://wiki.archlinux.org/title/Downgrading_packages). If that does not help, the problem is likely your specific hardware/environment that Veri does not account for. In either case feel free to open an issue.
 
 ### Maintaining the system
 
