@@ -2,10 +2,10 @@
 
 Veri is a minimal but polished and visually pleasing setup on top of Arch Linux and Hyprland. It is aimed at experienced users who want freedom and options, but also value their time. The project's policy and architecture support tweaking every single aspect of an Arch Linux system, while providing a stable baseline for the configuration of a modern desktop.
 
-![](assets/desktop_1.png)
-![](assets/desktop_2.png)
-![](assets/desktop_3.png)
-![](assets/desktop_4.png)
+![](assets/rofi.png)
+![](assets/widgets.png)
+![](assets/overview.png)
+![](assets/screenshot.png)
 
 ### Notable features
 
@@ -15,9 +15,10 @@ Veri is a minimal but polished and visually pleasing setup on top of Arch Linux 
 - Shell setup powered by Zsh
 - Multiple touchpad gestures, including volume and screen brightness control
 - Desktop level zoom
-- Screenshot tool with text recognition and Google Lens features
+- Screenshot tool with text recognition and Google Lens
 - Desktop recording tool
-- Visual software management powered by Pamac
+- GUI package management powered by Pamac
+- GUI desktop setting management powered by Hyprmod
 - Control over charging for laptop batteries
 - Clipboard history with images
 - Emoji and unicode picker
@@ -34,33 +35,35 @@ The installer is meant for a fresh Arch Linux installation. It is possible to in
 
 1. **Internet connection**
 
-    An internet connection is required to download packages during the installation. It is recommended to use [iwd](https://wiki.archlinux.org/title/Iwd) for wireless connection. The installed environment will use iwd as backend.
+An internet connection is required to download packages during the installation. It is recommended to use [iwd](https://wiki.archlinux.org/title/Iwd) for wireless connection. The installed environment will use iwd as backend.
 
 2. **User account**
 
-    A non-root user account must be set up to run the installer scripts.    
+A non-root user account must be set up to run the installer scripts.    
 
 3. **The installer itself**
 
-    Once internet connection and a user account are set up, make sure to switch to the user and then run:
+Once internet connection and a user account are set up, make sure to switch to the user and then run:
 
-    ```
-    curl -L https://api.github.com/repos/rzesm/veri/tarball/main -o veri.tar.gz && tar -xzf veri.tar.gz
-    ```
-    
-    This will put the installer in a folder in the current directory.
+```
+curl -L https://api.github.com/repos/rzesm/veri/tarball/main -o veri.tar.gz && tar -xzf veri.tar.gz
+```
+
+This will put the installer in a folder in the current directory.
 
 4. **Kernel parameters (recommended)**
 
-    Add kernel parameters that will make the boot cleaner, particularly `quiet` and `splash`. How it's done depends on your bootloader. Here's an example with [systemd-boot](https://wiki.archlinux.org/title/Systemd-boot):
-    
-    ```
-    options root=<UUID> rw loglevel=3 quiet splash systemd.show_status=false rd.udev.log_level=3 vt.global_cursor_default=0
-    ```
+Add kernel parameters that will make the boot cleaner, particularly `quiet` and `splash`. How it's done depends on your bootloader. Here's an example configuration for [systemd-boot](https://wiki.archlinux.org/title/Systemd-boot):
+
+```
+options root=<UUID> rw loglevel=3 quiet splash systemd.show_status=false rd.udev.log_level=3 vt.global_cursor_default=0
+```
+
+If configured properly, Veri should boot cleanly with an animation and no terminal leaking through.
 
 ### Using the installer
 
-Run the `sync` script from the installer's directory, which will guide you through the installation. Reboot your computer afterwards.
+Run the `sync` script from the installer's directory, which will guide you through the installation, then reboot.
 
 ### What if something isn't working
 
@@ -68,4 +71,4 @@ If you suspect something related to Veri isn't working properly in your installa
 
 ### Maintaining the system
 
-Once installed, updating Veri is possible via the `update-veri` command, which allows for pulling upstream features and fixes. Besides that, traditional maintenance methods of Arch Linux also apply and are sufficient. 
+Once installed, updating Veri is possible via the `update-veri` command, which pulls upstream changes. Besides that, traditional maintenance methods of Arch Linux also apply and are sufficient. 
