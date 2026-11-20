@@ -117,8 +117,7 @@ hl.gesture({
         end,
 
         update = function(e)
-            local zoom = zoom_at_start * e.scale
-            update_zoom(zoom)
+            update_zoom(zoom_at_start * e.scale)
         end
     }
 })

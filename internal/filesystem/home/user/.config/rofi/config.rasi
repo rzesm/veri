@@ -50,7 +50,7 @@ cycle: false;
 /*	threads: 0;*/
 scroll-method: 0;
 /*	window-format: "{w}    {c}   {t}";*/
-/*	click-to-exit: true;*/
+click-to-exit: false;
 /*	global-kb: false;*/
 /*	max-history-size: 25;*/
 /*	combi-hide-mode-prefix: false;*/
